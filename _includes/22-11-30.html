@@ -1,157 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
+<section id="s5">
+  <h2>Actividades de S5 (30 de noviembre)</h2>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-  <!-- bs, css,js -->
-</head>
-<style>
-  * {
-    margin: .2rem 0;
-    box-sizing: border-box;
-  }
-
-  fieldset {
-    width: min(15rem, 90vw);
-    margin-inline: auto;
-
-    display: flex;
-    flex-flow: row wrap;
-  }
-
-  label,
-  mark {
-    flex-basis: 100%;
-  }
-
-  p {
-    min-width: 100%;
-  }
-
-  mark {
-    outline: .1rem solid grey;
-    min-width: 100%;
-  }
-
-  label input {
-    width: 100%;
-    padding: 0;
-
-  }
-</style>
-
-<body>
-
-  <fieldset>
-    <legend>ejercicio 1</legend>
-    <label for="">1er numero<input type="number" id="num1" step="2"></label>
-    <label for="">2do numero<input type="number" id="num2"></label>
-    <input type="button" value="Enviar" id="btn1">
-    <input type="button" value="Limpiar" id="btn2">
-    <p id="resultado1"></p>
-
-
-    <script>
-      //DATOS DE ENTRADA Y VARIABLES
-      //1. seleccionar elementos del dom
-      const numero1 = document.querySelector('#num1');
-      const numero2 = document.querySelector('#num2');
-      const botonOperaciones = document.querySelector('#btn1');
-      const botonLimpiar = document.querySelector('#btn2');
-      const resultado = document.querySelector('#resultado1');
-
-      //3. variables para poder realizar los procesos
-      let num1 = 0;
-      let num2 = 0;
-      let suma = 0;
-      let multi = 0;
-      let divi = 0;
-      let resta = 0;
-
-      //:::en el caso de los input number, el evento onchange solo funciona cuando das clic en las flechas, no cuando escribes
-
-      //numero1.addEventListener('input', function () {
-      botonOperaciones.addEventListener('click', function () {
-        //PROCESO
-        //2. identificar el proceso: lo que se quiere es sumar,multiplicar, restar y dividir los dos números de los inputs
-
-        //4. implementar el proceso
-        num1 = parseInt(numero1.value); //o +numero1.value
-        num2 = parseInt(numero2.value);
-        suma = num1 + num2;
-        multi = num1 * num2;
-        divi = (num1 / num2).toFixed(2);
-        resta = num1 - num2;
-
-        //RESULTADO o 5.imprimir el resultado
-
-        resultado.innerHTML = `<em>La suma es: ${suma}, la resta es: ${resta}, la multiplicación es: ${multi} y la división es ${divi}.</em>`
-      })
-
-      botonLimpiar.addEventListener('click', function () {
-        numero1.value = "";
-        numero2.value = "";
-        resultado.innerHTML = "";
-      })
-
-
-
-
-
-    </script>
-  </fieldset>
-
-
-  <form action="">
-    <fieldset>
-      <legend>Cambio de moneda</legend>
-      <label for="">Ingresa importe en Soles<input type="number" id="userSoles"></label>
+  <ol>
+    <li>
+      <label>1er numero<input type="number" id="num1" step="2"></label>
+      <label>2do numero<input type="number" id="num2"></label>
+      <input type="button" value="Enviar" id="botonOperaciones">
+      <input type="button" value="Limpiar" id="botonLimpiar">
+      <p id="resultado1"></p>
+    </li>
+    <li>
+      <p>Cambio de moneda</p>
+      <label>Ingresa importe en Soles<input type="number" id="userSoles"></label>
       <p>Equivalente en Dólares:</p>
       <p id="equivalente1"></p>
 
-      <label for="">Ingresa importe en Dólares<input type="number" id="userDolares"></label>
+      <label>Ingresa importe en Dólares<input type="number" id="userDolares"></label>
       <p>Equivalente en Soles:</p>
       <p id="equivalente2"></p>
-    </fieldset>
+    </li>
 
-    <script>
-
-      let userSoles = document.querySelector('#userSoles');
-      const userDolares = document.querySelector('#userDolares');
-      let equivalente1 = document.querySelector('#equivalente1')
-      let equivalente2 = document.querySelector('#equivalente2')
-
-      let equivDolares = 0;
-      let equivSoles = 0;
-
-      let cambio = 3.5;
-
-      userSoles.oninput = function () {
-        equivDolares = (userSoles.value) * cambio;
-
-        let respuesta1 = `<mark>${equivDolares}</mark>`;
-        equivalente1.innerHTML = respuesta1;
-
-      }
-
-      userDolares.oninput = function () {
-        equivDolares = (userDolares.value) * cambio;
-
-        let respuesta2 = `<mark>${equivSoles}</mark>`;
-        equivalente2.innerHTML = respuesta2;
-
-      }
-
-    </script>
-  </form>
+    <li>Actividad asíncrona
+      <form>
+        <label>Ingrese su grupo (A, B o C) <input type="text" id="grupoDePersona"></label>
+        <label> Cuantos años de servicio tiene en la empresa? <input type="number"></label>
+        <button>Calular sueldo básico,bonificación si aplica y sueldo final</button>
+      </form>
+    </li>
+  </ol>
 
 
+  <script>
+    //DATOS DE ENTRADA Y VARIABLES
+    //1. seleccionar elementos del dom
+    const numero1 = document.querySelector('#num1');
+    const numero2 = document.querySelector('#num2');
+    const botonOperaciones = document.querySelector('#botonOperaciones');
+    const botonLimpiar = document.querySelector('#botonLimpiar');
+    const resultado = document.querySelector('#resultado1');
+
+    //3. variables para poder realizar los procesos
+    let num1 = 0;
+    let num2 = 0;
+    let suma = 0;
+    let multi = 0;
+    let divi = 0;
+    let resta = 0;
+
+    //:::en el caso de los input number, el evento onchange solo funciona cuando das clic en las flechas, no cuando escribes
+    //numero1.addEventListener('input', function () {
+    botonOperaciones.addEventListener('click', function () {
+      //PROCESO
+      //2. identificar el proceso: lo que se quiere es sumar,multiplicar, restar y dividir los dos números de los inputs
+
+      //4. implementar el proceso
+      num1 = parseInt(numero1.value); //o +numero1.value
+      num2 = parseInt(numero2.value);
+      suma = num1 + num2;
+      multi = num1 * num2;
+      divi = (num1 / num2).toFixed(2);
+      resta = num1 - num2;
+
+      //RESULTADO o 5.imprimir el resultado
+
+      resultado.innerHTML = `<em>La suma es: ${suma}, la resta es: ${resta}, la multiplicación es: ${multi} y la división es ${divi}.</em>`
+    })
+
+    botonLimpiar.addEventListener('click', function () {
+      numero1.value = "";
+      numero2.value = "";
+      resultado.innerHTML = "";
+    })
 
 
-</body>
+    let userSoles = document.querySelector('#userSoles');
+    const userDolares = document.querySelector('#userDolares');
+    let equivalente1 = document.querySelector('#equivalente1')
+    let equivalente2 = document.querySelector('#equivalente2')
 
-</html>
+    let equivDolares = 0;
+    let equivSoles = 0;
+
+    let cambio = 3.5; //suponiendo que 3.5 soles es = a 1 dolar
+
+    userSoles.oninput = function () {
+      equivDolares = (userSoles.value) * cambio;
+
+      let respuesta1 = `<mark>${equivDolares}</mark>`;
+      equivalente1.innerHTML = respuesta1;
+
+    }
+
+    userDolares.oninput = function () {
+      equivSoles = (userDolares.value) * cambio;
+
+      let respuesta2 = `<mark>${equivSoles}</mark>`;
+      equivalente2.innerHTML = respuesta2;
+
+    }
+
+
+
+
+
+
+
+
+  </script>
+</section>

@@ -17,14 +17,13 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  let allButtons = document.querySelectorAll("button,[type=button]");
-  let allInputs = document.querySelectorAll("input");
-
-  allButtons.forEach(button => {
-    button.className = 'btn btn-dark'
-  })
+  let allInputs = document.querySelectorAll("setion input");
+  let allButtons = document.querySelectorAll("section button,[type=button]");
 
   allInputs.forEach(input => {
     input.className = 'form-control'
+  })
+  allButtons.forEach(button => {
+    button.className = 'btn btn-dark'
   })
 })
