@@ -501,9 +501,6 @@ label input {
 
 }
 
-
-
-
 fieldset {
   /* width: min(20rem, 90vw); */
   max-width: 100%;
@@ -517,4 +514,8 @@ fieldset {
 
 p {
   min-width: 100%;
+}
+
+pre {
+  white-space: pre-line;
 }

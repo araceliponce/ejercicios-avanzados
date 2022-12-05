@@ -1,9 +1,27 @@
 <section id="s2">
+  <!-- me falta? -->
   <h2>Actividades de S2 (25 de noviembre)</h2>
   <ol>
     <li>
       <p>Una tienda pone a la venta varios juguetes: monopolio, ajedrez, damas, lego y laberinto y te da un descuento acorde a la cantidad que vayas a comprar.</p>
       <button id="btnJuguetes">Click para escoger juguete y cantidad</button>
+    </li>
+    <li>
+      <p>Desarrollar una aplicación web que permita generar los accesos mediante un usuario y contraseña
+        almacenado en un array. Los accesos deben ser ingresados mediante un formulario.
+        Ejemplo:
+        let usuarios = [“jperez”, “amaria”];
+        let contraseña = [“123456”, “certus123”];
+        Por ejemplo, si ingresa el usuario jperez y su contraseña 123456, debería mostrarse un mensaje de alerta
+        indicando “Datos ingresados correctamente”. Lo mismo si el usuario y contraseña serian amaria y
+        certus123 respectivamente.
+        No se no ingresa un usuario existente o la contraseña equivocada, se deberia mostrar un mensaje
+        indicando el error.</p>
+      <label for="usuarioIntento">Usuario</label>
+      <input type="text" id="usuarioIntento" required>
+      <label for="contraseñaIntento">Contraseña</label>
+      <input type="password" id="contraseñaIntento" required>
+      <input type="button" value="Enviar" id="btnEnviar">
     </li>
   </ol>
 </section>
@@ -58,6 +76,37 @@
     precioFinal = (precioInicial - porcentajeADescontar).toFixed(2);
     console.log({ precioSoloUnJuguete }, { precioInicial }, { porcentajeADescontar }, { precioFinal });
   })
+
+
+
+
+
+
+  let usuarios = ['jperez', 'amaria'];
+  let contraseñas = ['123456', 'certus123'];
+
+  let btnEnviar = document.getElementById('btnEnviar');
+  btnEnviar.addEventListener('click', () => {
+    let userIntento = document.getElementById('usuarioIntento').value;
+    let contraseñaIntento = document.getElementById('contraseñaIntento').value;
+    let mensaje = 'Datos incorrectos'; //valor de mensaje predeterminado
+
+    if (userIntento == '' || contraseñaIntento == '') {
+      mensaje = 'Datos incompletos';
+      alert(mensaje);
+    } else {
+      //recorre los arrays usuarios y contraseñas hasta que encuentra una igualdad y compara en el otro array
+      for (let i = 0; i < usuarios.length; i++) {
+        if (usuarios[i] = usuarioIntento && contraseñas[i] === contraseñaIntento) {
+          mensaje = 'Datos correctos';
+          break; //importante para que deje de recorrer apenas encuentre
+        }
+      }
+      alert(mensaje); //aqui para que aparezca una sola vez
+    }
+  })
+
+
 
 
 </script>
