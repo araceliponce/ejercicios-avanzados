@@ -18,8 +18,13 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   let allButtons = document.querySelectorAll("button,[type=button]");
+  let allInputs = document.querySelectorAll("input");
 
   allButtons.forEach(button => {
     button.className = 'btn btn-dark'
+  })
+
+  allInputs.forEach(input => {
+    input.className = 'form-control'
   })
 })
