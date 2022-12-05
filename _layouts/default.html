@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="es">
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
+<body>
 
-    {% include sidebar.html %}
+  {% include sidebar.html %}
 
-    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+  <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
-    <section class="wrap">
-      <section class="masthead">
-        <section class="container">
-          <h3 class="masthead-title">
-            <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
-            <small>{{ site.tagline }}</small>
-          </h3>
-        </section>
-      </section>
-
-      <section class="container content">
-        {{ content }}
+  <section class="wrap">
+    <section class="masthead">
+      <section class="container">
+        <h3 class="masthead-title">
+          <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
+          <small>{{ site.tagline }}</small>
+        </h3>
       </section>
     </section>
 
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    <section class="container content">
+      {{ content }}
+    </section>
+  </section>
 
-    <script src='{{ site.baseurl }}/public/js/script.js'></script>
-  </body>
+  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  <script src='{{ site.baseurl }}/public/js/script.js'></script>
+</body>
+
 </html>

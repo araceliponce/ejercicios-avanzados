@@ -1,0 +1,51 @@
+<section id="s3">
+  <h2>Actividades de S3 (26 de noviembre)</h2>
+  <ol>
+    <li>
+      <fieldset>
+        <label>¿Cuántas horas trabajó?<input type="number" id="horasT"></label>
+        <label>¿De cuánto es su pago por hora de trabajo?<input type="number" id="pagoPorHoraT"></label>
+        <p>Si ha trabajado más de 40 horas, esas horas cuentan como horas extras y por ellas usted recibe un pago de 50% más que una hora regular</p>
+        <button class="btn btn-dark" id="btnPagoCompleto">click aqui para obtener pago </button>
+        <p id="resultadoPagoCompleto"></p>
+
+      </fieldset>
+    </li>
+    <li>Actividad asincrona: Crear una aplicación web donde se ingrese un número entero y determine si es PRIMO o no.
+    </li>
+  </ol>
+
+  <script>
+    //BOTONES
+    let btnPagoCompleto = document.querySelector('#btnPagoCompleto');
+
+    btnPagoCompleto.addEventListener('click', function () {
+      let resultado1 = document.querySelector('#resultadoPagoCompleto');
+      let limiteHoras = 40;
+      let horasTRegulares = 0;
+      let pagoHorasRegulares = 0;
+      let horasTExtras = 0;
+      let pagoPorHoraExtra = 0;
+
+      let horasT = parseInt(document.querySelector('#horasT').value);
+      let pagoPorHoraT = parseFloat(document.querySelector('#pagoPorHoraT').value);
+      pagoPorHoraExtra = pagoPorHoraT * 1.5;
+
+      console.log({ horasT }, { pagoPorHoraT }, { pagoPorHoraExtra })
+
+
+      if (horasT > limiteHoras) {
+        console.log('trabajo mas alla del limite de horas')
+        horasTExtras = horasT - limiteHoras;
+        horasTRegular = limiteHoras;
+      } else {
+        console.log('no excedio el limite de horas de trabajo')
+        horasTRegulares = horasT;
+      }
+      pagoHorasRegulares = horasTRegulares * pagoPorHoraT;
+      pagoHorasExtras = horasTExtras * pagoPorHoraExtra;
+
+      resultado1.innerHTML = `Trabajó: ${horasTRegulares} horas regulares y ${horasTExtras} horas extras. Le corresponden: ${pagoHorasRegulares + pagoHorasExtras} soles de pago`;
+    })
+  </script>
+</section>

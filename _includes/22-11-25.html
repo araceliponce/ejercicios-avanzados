@@ -1,0 +1,63 @@
+<section id="s2">
+  <h2>Actividades de S2 (25 de noviembre)</h2>
+  <ol>
+    <li>
+      <p>Una tienda pone a la venta varios juguetes: monopolio, ajedrez, damas, lego y laberinto y te da un descuento acorde a la cantidad que vayas a comprar.</p>
+      <button id="btnJuguetes">Click para escoger juguete y cantidad</button>
+    </li>
+  </ol>
+</section>
+
+<script>
+  let btnJuguetes = document.getElementById('btnJuguetes');
+
+  let preciosJuguetesDeMesa = {
+    'monopolio': 70.99,
+    'ajedrez': 78.99,
+    'lego': 100.99,
+    'damas': 58.50,
+    'laberinto': 35.00
+  } //An identifier in JavaScript contains Unicode letters, $, _, and digits 0..9, but cannot start with a digit https://dmitripavlutin.com/access-object-properties-javascript/
+  console.log({ preciosJuguetesDeMesa });
+
+  btnJuguetes.addEventListener('click', () => {
+    let jugueteEscogido = prompt('¿Qué juguete quieres comprar?');
+    console.log(Object.hasOwn(preciosJuguetesDeMesa, jugueteEscogido.toLowerCase()));
+
+    //preguntar hasta que se encuentre en el objeto {}
+    //https://stackoverflow.com/a/4587130 hasOwn
+    while (Object.hasOwn(preciosJuguetesDeMesa, jugueteEscogido.toLowerCase()) == false) {
+      jugueteEscogido = prompt(` '${jugueteEscogido}' no se encuentra entre nuestros juguetes, nosotros vendemos monopolio, ajedrez, lego, damas y laberinto. por favor, escoge de nuevo`);
+    }
+    console.log({ jugueteEscogido });
+    let cantidadEscogida = +prompt(`bien, ¿cuántos quieres comprar?`);
+    let precioSoloUnJuguete = 0;
+    let precioInicial = 0;
+
+    let porcentajeADescontar = 0;
+    let precioFinal = 0;
+
+    //obtenemos el precio por unidad del juguete escogido y multiplicamos por la cantidad
+    for (let item in preciosJuguetesDeMesa) {
+      if (item == jugueteEscogido.toLowerCase()) {
+        precioSoloUnJuguete = preciosJuguetesDeMesa[jugueteEscogido.toLowerCase()]; //https://dmitripavlutin.com/access-object-properties-javascript/ if the dot property accessor doesn't work we can use the square brackets []
+        precioInicial = precioSoloUnJuguete * cantidadEscogida;
+      }
+    }
+
+    //dependiendo de la cantidad el descuento varia
+    if (cantidadEscogida > 0 && cantidadEscogida < 10) {
+      porcentajeADescontar = 0.035 * precioInicial;
+    } else if (cantidadEscogida >= 10 && cantidadEscogida <= 20) {
+      porcentajeADescontar = 0.07 * precioInicial;
+    } else if (cantidadEscogida > 20) {
+      porcentajeADescontar = 0.095 * precioInicial;
+    }
+
+    //el precio final es igual al primer cálculo - descuento obtenido, redondeado a 2 decimales
+    precioFinal = (precioInicial - porcentajeADescontar).toFixed(2);
+    console.log({ precioSoloUnJuguete }, { precioInicial }, { porcentajeADescontar }, { precioFinal });
+  })
+
+
+</script>

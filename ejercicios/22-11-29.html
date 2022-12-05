@@ -1,0 +1,203 @@
+<!-- 
+
+
+
+  <script style="display: block; white-space: pre;">
+
+    //const resultado = document.getElementById('resultado');
+
+    let cadena = 'hola@com.//@@@certus.ed1258eWU.PE'
+
+    let arrobas = /@/g;
+    // tienes que poner g despues del /@/ para encontar todos los @
+
+    let matchArrobas = cadena.match(arrobas);
+    // ctrl y basctick para comentario de una linea.    shift alt a para bloque
+    resultado.innerText = `numero de ${arrobas} es: ${matchArrobas.length}`
+
+
+    let mayus = /[A-Z]/g
+    let matchMayus = cadena.match(mayus);
+    resultado.innerText += ` <br> numero de ${mayus} es: ${matchMayus.length}`
+
+    let nums = /[0-9]/g;
+
+
+    let puntos = /[.]/g;
+
+    let slashes = /\//g;  //necesitas agregarle unslash invertido ES EL ESCAPE \\\\\
+    let matchSlashes = cadena.match(slashes);
+
+    resultado.innerText = matchSlashes.length; //n de slashes
+
+
+
+    //FUNCIONES DE FECHA
+    let fecha1 = new Date;
+
+    resultado.innerText += "\n fecha1: " + fecha1;
+    resultado.innerText += "\n fecha1 locale date string: " + fecha1.toLocaleDateString();
+    resultado.innerText += "\n fecha1 local time string: " + fecha1.toLocaleTimeString();
+    resultado.innerText += "\n fecha1 only date: " + fecha1.getDate();
+    resultado.innerText += "\n fecha1 only month: " + fecha1.getMonth();
+    resultado.innerText += "\n fecha1 only fullyear: " + fecha1.getFullYear();
+
+  </script>
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    label {
+      display: block;
+      margin: 1rem auto;
+    }
+
+    button {
+      margin-bottom: 3rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <label for="">Ingrese un número de 3 cifras, si las tres son iguales, obtiene la suma de sus raíces cuadradas, si son diferentes, obtiene la suma de las cifras después de ser elevadas al cuadrado<input id="numero-uno" type="number" minlength="3" maxlength="3"></label>
+  <button id="button1">Click aqui</button>
+
+
+  <label for="">Ejercicio 2: comprobación de requerimientos de contraseña segura<input id="password" type="text"></label>
+  <button id="button2">Click aqui</button>
+
+
+  <script>
+
+    // let btn1 = document.querySelector('button:first-of-type')
+
+    let btn1 = document.querySelector('#button1');
+
+    btn1.addEventListener('click', () => {
+      //obtiene el valor del input
+      let numeroUno = document.querySelector('#numero-uno').value;
+      //verifica que sea de tres cifras
+      if (numeroUno > 99 && numeroUno < 1000) {
+        console.log('es un numero de 3 cifras');
+        //verifica que las 3 cifras o numeros sean iguales
+        if (numeroUno[0] == numeroUno[1] && numeroUno[1] == numeroUno[2]) {
+          console.log('los tres dígitos son iguales');
+
+          let suma = 0;
+          for (digito of numeroUno) {
+            suma += Math.pow(digito, 1 / 2)
+          }
+          console.log({ suma });
+
+        } else {
+          console.log('no son iguales');
+
+          let suma = 0;
+          for (digito of numeroUno) {
+            suma += Math.pow(digito, 2);
+          }
+          console.log({ suma });
+        }
+      } else {
+        console.log('inserte un numero diferente, uno de 3 cifras')
+      }
+    })
+
+
+
+    let btn2 = document.querySelector('#button2')
+
+    btn2.addEventListener('click', () => {
+      let pass = document.querySelector('#password').value;
+
+      //como obtenía muchos avisos de null que pausaban el proceso los coloque en funciones, como hacen en https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null 
+      //si no hay matches, el metodo match obtiene null pero la funcion retorna 0 asi que no hay errores
+      function matchMinus() {
+        let minus = /[a-z]/g;
+        let matchMinus = pass.match(minus);
+        if (matchMinus === null) {
+          return 0;
+        } else {
+          return matchMinus.length; //dice 'debe contener minusculas, asi que mínimo 2'
+        }
+      }
+
+      function matchMayus() {
+        let mayus = /[A-Z]/g;
+        let matchMayus = pass.match(mayus);
+        if (matchMayus === null) {
+          return 0;
+        } else {
+          return matchMayus.length; //mínimo 1
+        }
+      }
+
+      function matchSigno() {
+        let signo = /[@,_]/g;
+        let matchSigno = pass.match(signo);
+        if (matchSigno === null) {
+          return 0;
+        } else {
+          return matchSigno.length; //mínimo 1
+        }
+      }
+
+      function matchNumero() {
+        let numero = /[0-9]/g;
+        let matchNumero = pass.match(numero);
+        if (matchNumero === null) {
+          return 0;
+        } else {
+          return matchNumero.length; //mínimo 1
+        }
+      }
+
+      let nOfMinus = matchMinus();
+      let nOfMayus = matchMayus();
+      let nOfSigno = matchSigno();
+      let nOfNumero = matchNumero();
+      let minimoCaracteres = 10;
+
+      if (pass.length >= minimoCaracteres) {
+        console.log('Cumple con el mínimo de caracteres');
+        if (nOfMinus < 2) {
+          console.log('pero necesita al menos 2 minúsculas')
+        } if (nOfMayus < 1) {
+          console.log('pero necesita al menos 1 letra mayúscula')
+        } if (nOfSigno < 1) {
+          console.log('pero necesita al menos un signo')
+        } if (nOfNumero < 1) {
+          console.log('pero necesita al menos un número')
+        } else {
+          console.log('Todo correcto')
+        }
+      } else {
+        console.log('Necesita al menos 10 caracteres');
+      }
+
+    })
+
+
+
+
+
+
+
+
+  </script>
+
+
+</body>
+
+</html>

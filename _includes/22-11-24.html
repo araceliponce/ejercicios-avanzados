@@ -1,0 +1,171 @@
+<section id="s1">
+  <h2>Actividades de S1 (24 de noviembre)</h2>
+  <ol>
+    <li>
+      <p>Crear una funcion que convierta los strings que se ingresan como parametros a estilo capitalizado. Ejemplo: "hola a todos" => "Hola A Todos"</p>
+      <input type="text" id="inputString">
+      <button class="btn btn-dark" id="btnCapitalizar">capitalizar</button>
+      <p id="respuestaCapitalizar"></p>
+    </li>
+    <li>
+      <p>Dado el siguiente objeto, crear una funcion que verifique si todos los atributos se encuentran llenos.
+        En caso no sea asi, que envie una alerta mostrando un mensaje y los atributos que estan vacíos.
+        Ejemplo: {nombre: "", apellido: "Pacheco", edad: 38, profesion: ""} => Los campos nombre y profesion se encuentran vacios.</p>
+      <button class="btn btn-dark" id="btnVerificar">Click y ver consola</button>
+    </li>
+    <li>
+      <p>Para el ejercicio anterior, crear una funcion que dados los datos pendientes, lance un prompt para que el usuario
+        // complete los datos faltantes. Debe verificar que el dato ingresado no este vacio y que corresponda al tipo de dato.</p>
+      <button class="btn btn-dark" id="btnCompletar">Click y prompts</button>
+    </li>
+
+    <li>
+      <p>Te enviaron una base de datos de usuarios:
+      <pre>
+          <code>
+            let users = [
+            { nombre: "", apellido: "Pacheco", edad: 38, profesion: "" },
+            { nombre: "Andrea", apellido: "", edad: 25, profesion: "profesor" },
+            { nombre: "Julia", apellido: "", edad: 32, profesion: "musico" },
+            { nombre: "", apellido: "Martinez", edad: 29, profesion: "programador" },
+            { nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "" },
+            { nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario" },
+            ]
+          </code>
+        </pre>Te piden que utilizando las funciones de los ejercicios anteriores, evalues que usuarios tienen datos pendientes y en caso existan, solicitar el ingreso de los datos a traves del prompt para completarlos</p>
+      <button class="btn btn-dark" id="btnCompletarDeTodos">Click y alertas y prompts</button>
+    </li>
+    <li>
+      <p>Crear una funcion que permita ordenar los usuarios por edad.</p>
+    </li>
+    <button class="btn btn-dark" id="btnOrdenar">Click y abrir consola</button>
+  </ol>
+  <table>
+    <thead>
+      <tr>
+        <th>esta es una tabla html5</th>
+        <th>soy la 2da col del header</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>soy parte del cuerpo de la tabla</td>
+        <td>soy la 2da columna de este row y soy muy extensa</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    let edad = '29';
+    //console.log(isNaN(edad)); //isnan (is not a number? or is this a NotNumber? true/false)
+    //console.log(edad[0]) //primer caracter
+
+
+    //BOTONES
+    let btnCapitalizar = document.querySelector('#btnCapitalizar');
+
+    btnCapitalizar.addEventListener('click', () => {
+      let inputString = document.querySelector('#inputString').value;
+      let respuestaCapitalizar = document.querySelector('#respuestaCapitalizar');
+
+      console.log({ inputString })
+
+      respuestaCapitalizar.innerHTML = capitalizar(inputString);
+    })
+
+    //let everyFirstLetter = stringSplitted[index][0];
+    // everyF... = everyFirstLetter.toUppercase(); doesnt work
+
+    function capitalizar(frase) {
+      let fraseCortada = frase.split(' '); //> array de palabras
+      console.log({ fraseCortada });
+
+      let palabrasCapitalizadas = []; // al final se retornan como un solo string usando el método join
+
+      for (let i = 0; i < fraseCortada.length; i++) {
+        console.log('holaa')
+        let palabraCapitalizada =
+          `${fraseCortada[i][0].toUppercase()}${fraseCortada[i].substring[1]}`;
+        console.log({ palabraCapitalizada });
+
+        palabrasCapitalizadas.push(palabraCapitalizada);
+      }
+      return palabrasCapitalizadas.join(' '); //unirlas dejando un espacio entre ellas
+    }
+
+
+
+
+    let btnVerificar = document.querySelector('#btnVerificar')
+
+    btnVerificar.addEventListener('click', () => {
+      let persona = { nombre: "", apellido: "", edad: 38, profesion: "" };
+
+      showInfo(persona);
+    })
+    function showInfo(objeto) {
+      for (const rasgo in objeto) {
+        console.log(`${rasgo}: ${persona[rasgo]}`)
+      }
+      return objeto;
+    }
+
+
+    let btnCompletar = document.querySelector('#btnCompletar');
+    btnCompletar.addEventListener('click', () => {
+      askUntilNotBlank(persona); //es bastante
+
+    })
+    function askUntilNotBlank(objeto) {
+      for (const rasgo in objeto) {
+        while (objeto[rasgo] === '') {
+          objeto[rasgo] = prompt(`El dato ${rasgo} esta vacío, por favor ingréselo`);
+        }
+      }
+      return objeto;
+    }
+    let users = [
+      { nombre: "", apellido: "Pacheco", edad: 38, profesion: "" },
+      { nombre: "Andrea", apellido: "", edad: 25, profesion: "profesor" },
+      { nombre: "Julia", apellido: "", edad: 32, profesion: "musico" },
+      { nombre: "", apellido: "Martinez", edad: 29, profesion: "programador" },
+      { nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "" },
+      { nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario" },
+    ]
+
+    let btnCompletarDeTodos = document.querySelector('#btnCompletarDeTodos');
+    btnCompletarDeTodos.addEventListener('click', () => {
+      doubleLoop(users)
+      function doubleLoop(object) {
+        for (const persona in object) { //>const persona y const rasgo se imprimen como NUMEROS 0 1 2 3 4...
+
+          alert(`comenzar a verificar los datos de la persona ${+persona + 1}`) //cuando acepte empieza el loop para completar lo que falte //inicia en cero, por eso el + 1. y '+persona' para que 'persona' pase a ser numero
+
+          for (const rasgo in persona) {
+
+            //console.log(`los datos de la persona ${persona} están incompletos`);
+            // console.log(persona) //> 0 1 2 3 4 5
+            // console.log(rasgo) 0 0 0 0 0 0
+
+            askUntilNotBlank(object[persona]); //persona son numeros indices
+          }
+          alert(`datos de la persona ${+persona + 1} completos`)
+        }
+        alert('todos los datos completos, gracias');
+        return object;
+      }
+
+    })
+
+    let btnOrdenar = document.getElementById('btnOrdenar');
+
+    btnOrdenar.addEventListener('click', () => {
+      sortbyAge(users);
+      function sortbyAge(objeto) { //de menor a mayor
+        let enOrdenDeEdad = objeto.sort((a, b) => {
+          return (a.edad - b.edad)
+        })
+        console.log(enOrdenDeEdad);
+      }
+    })
+  </script>
+</section>
