@@ -519,3 +519,12 @@ p {
 pre {
   white-space: pre-line;
 }
+
+
+.valid {
+  border: 1px solid green;
+}
+
+.not-valid {
+  border: 1px solid red;
+}
