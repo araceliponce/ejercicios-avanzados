@@ -40,7 +40,7 @@
     </li>
     <button class="btn btn-dark" id="btnOrdenar">Click y abrir consola</button>
   </ol>
-  <table>
+  <table class="d-none">
     <thead>
       <tr>
         <th>esta es una tabla html5</th>
@@ -95,13 +95,11 @@
     }
 
 
-
+    let persona = { nombre: "", apellido: "", edad: 38, profesion: "" };
 
     let btnVerificar = document.querySelector('#btnVerificar')
 
     btnVerificar.addEventListener('click', () => {
-      let persona = { nombre: "", apellido: "", edad: 38, profesion: "" };
-
       showInfo(persona);
     })
     function showInfo(objeto) {
