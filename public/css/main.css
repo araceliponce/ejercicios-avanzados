@@ -528,3 +528,11 @@ pre {
 .not-valid {
   border: 1px solid red;
 }
+
+section[id]:target {
+  background-color: coral;
+}
+
+.capitalized {
+  text-transform: capitalize;
+}

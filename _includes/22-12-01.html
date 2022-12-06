@@ -1,68 +1,95 @@
 <section id="01dic">
-  <h2>Actividades del 01 de diciembre</h2>
-  <form action="">
-    <label for="">Ingrese DNI<input type="text" id="input-dni"></label>
+  <h2>Actividades de S6 (01 de diciembre)</h2>
+  <ol>
+    <li>
+      <label>Ingrese DNI<input type="text" id="input-dni"></label>
 
-    <label for="">Ingrese nombre<input type="text" id="input-nombre"></label>
+      <label>Ingrese nombre<input type="text" id="input-nombre"></label>
 
-    <label for="">Ingrese tel<input type="text" id="input-tel"></label>
-    <input type="button" id="btn" value="aa">
-
-
-    <script>
-      let dni = document.querySelector("#input-dni");
-      let nombre = document.querySelector("#input-nombre");
-      let tel = document.querySelector("#input-tel");
-      let btn = document.querySelector('#btn')
+      <label>Ingrese teléfono<input type="text" id="input-tel"></label>
+      <input type="button" id="btnDNT" value="Click y ver consola">
+    </li>
+  </ol>
 
 
-      btn.addEventListener('click', () => {
-        let vdni = dni.value;
 
-        // let regExp = new RegExp("[0-9]"); //hey
-        // let regExpDebeIniciar = new RegExp("^[0-9]"); //debe iniciar  en numero
-        //let regExpDebeTerminar = new RegExp("[0-9]$");
-        ///debe acabar en numero
+  <script>
+    let dni = document.querySelector("#input-dni");
+    let nombre = document.querySelector("#input-nombre");
+    let tel = document.querySelector("#input-tel");
+    let btnDNT = document.querySelector('#btnDNT')
 
-        let regExpDni = new RegExp("^[0-9]{8}$");
 
-        if (regExpDni.test(vdni)) {
-          console.log('dni invalido')
+    btnDNT.addEventListener('click', () => {
+      dni.className = 'form-control'; //reinicimamos a una clase para segundos, terceros, ... intentos
+
+
+      let vdni = dni.value;
+      //console.log(vdni); //pasa de este valor a un boolean cuando se usa un regExp.test(value)
+
+      // let regExp = new RegExp("[0-9]"); //debe contener un numero
+      // let regExpDebeIniciar = new RegExp("^[0-9]"); //debe iniciar  en numero
+      //let regExpDebeTerminar = new RegExp("[0-9]$");
+      ///debe acabar en numero
+
+      let regExpDni = new RegExp("^[0-9]{8}$");
+
+      /*  if (!regExpDni.test(vdni)) {
+         console.log('dni invalido')
+         dni.classList.add('not-valid');
+ 
+       } else {
+         console.log('dni valido')
+         dni.classList.add('valid');
+       } */
+
+
+      function validarCon(regularExpression, value, htmlEl, label) {
+        if (value = '' || !regularExpression.test(value)) {
+          console.log(`${label} inválido`)
+          htmlEl.classList.add('not-valid');
+          //console.log({ value })>true/false
+
         } else {
-          console.log('dni valido')
+          console.log(`${label} válido`)
+          htmlEl.classList.add('valid');
         }
       }
-      )
+
+      validarCon(regExpDni, vdni, dni, 'DNI');
 
 
-      btn.addEventListener('click', function () {
-        let vnombre = nombre.value;
+      let vnombre = nombre.value;
 
-        // ^[A-Za-z] empieze con mayusc o minusc
-        //[AZa-z]$ acabar con mayusc o minusc
-        //+([\s]?[A-Za-z])*$ luego puede o puede no haber un espacio en blanco, junto letras (si hay espacio en blannco si o s debe seguirle unas letras)
-        let regExpNombre = /^[A-Z]+([\s]?[A-Za-z])*$/; //con test, devuelve verdadero si cumple
+      // ^[A-Za-z] empieze con mayusc o minusc
+      //[AZa-z]$ acabar con mayusc o minusc
+      //+([\s]?[A-Za-z])*$ luego puede o puede no haber un espacio en blanco, junto letras (si hay espacio en blannco si o s debe seguirle unas letras)
+      let regExpNombre = /^[A-Z]+([\s]?[A-Za-z])*$/; //con test, devuelve verdadero si cumple
 
-        //si esta vacio o no pasa el test -> invalido
-        if (vnombre = "" || !regExpNombre.test(vnombre)) {
-          console.log('nombre invalido')
-        } else {
-          console.log('...')
-        }
+      //si esta vacio o no pasa el test -> invalido
+      /* if (vnombre = "" || !regExpNombre.test(vnombre)) {
+        console.log('nombre invalido')
+        nombre.classList.add('not-valid');
 
+      } else {
+        console.log('...')
+        nombre.classList.add('valid');
 
+      } */
 
-        let vtel = tel.value;
-        let regExpTel = /^\([0-9]{2}\)[0-9]{3}-[0-9]{3}-[0-9]{3}$/;
-
-        if (!regExpTel.test(vtel)) {
-          console.log('tel invalido')
-        }
-      })
+      validarCon(regExpNombre, vnombre, nombre, 'Nombre');
 
 
 
 
-    </script>
-  </form>
+      let vtel = tel.value;
+      let regExpTel = /^\([0-9]{2}\)[0-9]{3}-[0-9]{3}-[0-9]{3}$/;
+
+      validarCon(regExpTel, vtel, tel, 'Teléfono')
+    })
+
+
+
+
+  </script>
 </section>
