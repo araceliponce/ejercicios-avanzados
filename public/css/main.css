@@ -474,7 +474,7 @@ script {
 }
 
 .content section[id] {
-  background-color: lightblue;
+  background-color: cornflowerblue;
   padding: 1rem;
 }
 
@@ -531,8 +531,19 @@ pre {
 
 section[id]:target {
   background-color: coral;
+  transform: scale(1.1);
+  margin: 4em auto;
 }
 
 .capitalized {
   text-transform: capitalize;
+}
+
+:required {}
+
+:optional {}
+
+
+.corn {
+  background-color: cornflowerblue;
 }
