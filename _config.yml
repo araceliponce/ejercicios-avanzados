@@ -3,7 +3,7 @@ title:               Ejercicios de Javascript
 tagline:             #''
 description:         #''
 url:                 https://araceliponce.github.io
-baseurl:             '/lanyon'
+baseurl:             '/ejercicios-avanzados'
 paginate:            5
 permalink:           pretty
 
