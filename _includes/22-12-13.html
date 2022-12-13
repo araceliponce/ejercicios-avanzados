@@ -1,0 +1,61 @@
+<section id="s9" aria-labelledby="s9Title">
+  <h3 id="s9Title">Actividades de S9 (13 de diciembre)</h3>
+
+  <ol>
+    <li>
+      <p>En una empresa hay distintos cargos (jefe, analista, programador, soporte y asistente) y todos tienen un sueldo bruto y un sueldo neto (sueldo bruto menos el 12.5%) de acuerdo a su cargo</p>
+      <button onclick="funcionSueldos1()">Clik y ver Consola</button>
+    </li>
+  </ol>
+</section>
+
+<script>
+
+  let sueldosExistentes = {
+    jefe: 5000,
+    analista: 4000,
+    programador: 3000,
+    soporte: 2000,
+    asistente: 1500,
+  }
+  const descuento = 12.5; //12.5%
+
+
+  function funcionSueldos1() {
+    let empleadoNuevo = new Empleado;
+    // empleadoNuevo.sueldoBruto(); 
+    empleadoNuevo.sueldoNeto(); /* llamando a ambas funciones se repetia un console log, con llamar solo la ultima parece funcionar */
+
+  }
+  class Empleado {
+    nombre;
+    edad;
+    cargo = prompt('¿Cuál es su cargo?');
+    sueldoBruto() {
+      // console.log(Object.keys(this.sueldos)); //las keys de this.sueldos en un array
+      // console.log(Object.values(this.sueldos)) //array de los values
+      // console.log(Object.entries(this.sueldos)) //devuelve arrays donde estan juntas 1 key y su value
+      let suCargo = this.cargo.toLowerCase();
+      //console.log(suCargo)
+
+      console.log(sueldosExistentes.hasOwnProperty(suCargo)) // true | false
+
+      let cargoExiste = sueldosExistentes.hasOwnProperty(suCargo) //intenté usar un loop while pero no detectaba a suCargo o this.cargo
+
+      let suSueldo = Object.fromEntries(Object.entries(sueldosExistentes).filter(([key]) => key.includes(suCargo))); // devuelve el par { jefe: 5000 }
+
+      let sueldoBruto = suSueldo[suCargo] // devuelve solo el value 5000
+
+      console.log(`El sueldo bruto correspondiente a ${suCargo} es ${sueldoBruto} soles`)
+      return sueldoBruto;
+    };
+    sueldoNeto() {
+      let sueldoFinal = this.sueldoBruto() * (100 - descuento) / 100
+
+      console.log(`Pero descontando el ${descuento}% su sueldo neto es ${sueldoFinal} soles`)
+      return sueldoFinal;
+    }
+  }
+
+
+</script>
