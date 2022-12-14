@@ -476,7 +476,15 @@ script {
 .content section[id] {
   background-color: cornflowerblue;
   padding: 1rem;
+  margin: 2em auto;
 }
+
+.content section[id]:target {
+  background-color: coral;
+  transform: scale(1.1);
+  margin: 4em auto;
+}
+
 
 label,
 mark {
@@ -529,11 +537,6 @@ pre {
   border: 1px solid red;
 }
 
-section[id]:target {
-  background-color: coral;
-  transform: scale(1.1);
-  margin: 4em auto;
-}
 
 .capitalized {
   text-transform: capitalize;
