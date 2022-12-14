@@ -27,8 +27,9 @@
     }
 
     class Estudiante extends Persona {
-      constructor(nombre, apellidos, notas, resultado, obsequio) {
+      constructor(nombre, apellidos, codigo, notas, resultado, obsequio) {
         super(nombre, apellidos);
+        this.codigo;
         this.notas;
         this.resultado;
         this.obsequio;
@@ -53,7 +54,7 @@
       obtenerResultado();
       obtenerObsequio();
 
-      let nuevoEstudiante = new Estudiante('abc', 'def', susNotas, suResultado, suObsequio);
+      let nuevoEstudiante = new Estudiante('001', 'abc', 'def', susNotas, suResultado, suObsequio);
 
       console.log(nuevoEstudiante); //incompleto
 
@@ -122,7 +123,7 @@
     }
 
     //distintas formas de obtener sus properties
-    const name = prompt('¿cual es su nombre');
+    //const name = prompt('¿cual es su nombre');
     armandito.programa = prompt('programa?')
     let armandito = new Student(name, 11)
     //console.log(armandito)
