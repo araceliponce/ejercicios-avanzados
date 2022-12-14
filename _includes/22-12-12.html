@@ -76,7 +76,7 @@
     // const docePass2 = document.getElementById('docePass2');
     //let doceEnviar = document.getElementById('doceEnviar');
 
-    let noConsoleLog = document.createElement('span');
+    let unSpan = document.createElement('span');
 
 
     let specialChars = /[`!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/
@@ -86,15 +86,15 @@
     // .value      .valueAsDate      .valueAsNumber
 
     function validarYMostrarMensaje(regularExpression, htmlEl, alertSiIncorrecto) {
-      htmlEl.parentElement.appendChild(noConsoleLog); //como appendSibling no existe
+      htmlEl.parentElement.appendChild(unSpan); //como appendSibling no existe
 
       if (value = '' || !regularExpression.test(htmlEl.value)) {
         htmlEl.className = 'form-control not-valid';
-        noConsoleLog.textContent = 'algo incorrecto';
+        unSpan.textContent = 'algo incorrecto';
         alert(alertSiIncorrecto);
       } else {
         htmlEl.className = 'form-control valid';
-        noConsoleLog.textContent = 'todo correcto';
+        unSpan.textContent = 'todo correcto';
         console.log(`${htmlEl.value} está correcto`);
       }
     }
@@ -127,7 +127,7 @@
       ) {
         alert('CONTRASEÑAS IGUALES :)')
       } else {
-        //noConsoleLog.textContent = '*CONTRASEÑAS DIFERENTES O VACÍA(S)'
+        //unSpan.textContent = '*CONTRASEÑAS DIFERENTES O VACÍA(S)'
         alert('CONTRASEÑAS DIFERENTES O VACÍA(S)')
       }
 
