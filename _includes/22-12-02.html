@@ -139,116 +139,117 @@
     </p>
   </form>
   <p id="mensaje"></p>
-</section>
-
-
-<script>
 
 
 
-  // Controles del formulario
-  const userDni = document.getElementById("txtDni");
-  const msgValDni = document.getElementById("msgValDni");
+  <script>
 
-  const userNombre = document.getElementById("txtNombre");
-  const msgValNombre = document.getElementById("msgValNombre");
 
-  const userTel = document.getElementById("txtTel");
-  const msgValTel = document.getElementById("msgValTel");
 
-  const userPwd = document.getElementById("txtPwd");
-  const msgValPwd = document.getElementById("msgValPwd");
+    // Controles del formulario
+    const userDni = document.getElementById("txtDni");
+    const msgValDni = document.getElementById("msgValDni");
 
-  const userEmail = document.getElementById("txtEmail");
-  const msgValEmail = document.getElementById("msgValEmail");
+    const userNombre = document.getElementById("txtNombre");
+    const msgValNombre = document.getElementById("msgValNombre");
 
-  const mensaje = document.getElementById("mensaje");
+    const userTel = document.getElementById("txtTel");
+    const msgValTel = document.getElementById("msgValTel");
 
-  const btnEnviarTodo = document.getElementById("btnEnviarTodo");
+    const userPwd = document.getElementById("txtPwd");
+    const msgValPwd = document.getElementById("msgValPwd");
 
-  // Funcion de validacion
-  function Validar() {
-    // Input Dni
-    let valueDni = userDni.value;
-    msgValDni.innerText = "";
-    let RegExpDni = new RegExp("^[0-9]{8}$");
+    const userEmail = document.getElementById("txtEmail");
+    const msgValEmail = document.getElementById("msgValEmail");
 
-    // Input Nombre
-    let valueNombre = userNombre.value;
-    msgValNombre.innerText = "";
-    let RegExpNom = /^[A-Z]+([\s]?[A-Za-z])*$/;
+    const mensaje = document.getElementById("mensaje");
 
-    // Input Telefono
-    let valueTel = userTel.value;
-    msgValTel.innerText = "";
-    let RegExpTel = /^\([0-9]{2}\)[0-9]{3}-[0-9]{3}-[0-9]{3}$/;
+    const btnEnviarTodo = document.getElementById("btnEnviarTodo");
 
-    // Input Password
-    let valuePwd = userPwd.value;
-    msgValPwd.innerText = "";
-    let RegExpPwd = /^[A-Z]{1}[a-z]*[0-9]{1}/;
+    // Funcion de validacion
+    function Validar() {
+      // Input Dni
+      let valueDni = userDni.value;
+      msgValDni.innerText = "";
+      let RegExpDni = new RegExp("^[0-9]{8}$");
 
-    // Input Email
-    let valueEmail = userEmail.value;
-    msgValEmail.innerText = "";
-    let RegExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      // Input Nombre
+      let valueNombre = userNombre.value;
+      msgValNombre.innerText = "";
+      let RegExpNom = /^[A-Z]+([\s]?[A-Za-z])*$/;
 
-    // Condiciones para la validacion
-    if (!RegExpDni.test(valueDni)) {
-      msgValDni.innerText = "Dni inválido";
-      return false;
-    } else if (vnombre == "" || !RegExpNom.test(valueNombre)) {
-      msgValNombre.innerText = "Nombre inválido";
-      return false;
-    } else if (!RegExpTel.test(vtel)) {
-      msgValTel.innerText = "Ingrese codigo de pais (01)###-###-###";
-      return false;
-    } else if (vpwd.length < 10 || !RegExpPwd.test(valuePwd)) {
-      msgValPwd.innerText = "Error de contraseña";
-      return false;
-    } else if (!RegExpEmail.test(valueEmail)) {
-      msgValEmail.innerText = "Email invalido";
-      return false;
-    } else {
-      return true;
+      // Input Telefono
+      let valueTel = userTel.value;
+      msgValTel.innerText = "";
+      let RegExpTel = /^\([0-9]{2}\)[0-9]{3}-[0-9]{3}-[0-9]{3}$/;
+
+      // Input Password
+      let valuePwd = userPwd.value;
+      msgValPwd.innerText = "";
+      let RegExpPwd = /^[A-Z]{1}[a-z]*[0-9]{1}/;
+
+      // Input Email
+      let valueEmail = userEmail.value;
+      msgValEmail.innerText = "";
+      let RegExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+      // Condiciones para la validacion
+      if (!RegExpDni.test(valueDni)) {
+        msgValDni.innerText = "Dni inválido";
+        return false;
+      } else if (vnombre == "" || !RegExpNom.test(valueNombre)) {
+        msgValNombre.innerText = "Nombre inválido";
+        return false;
+      } else if (!RegExpTel.test(vtel)) {
+        msgValTel.innerText = "Ingrese codigo de pais (01)###-###-###";
+        return false;
+      } else if (vpwd.length < 10 || !RegExpPwd.test(valuePwd)) {
+        msgValPwd.innerText = "Error de contraseña";
+        return false;
+      } else if (!RegExpEmail.test(valueEmail)) {
+        msgValEmail.innerText = "Email invalido";
+        return false;
+      } else {
+        return true;
+      }
+
     }
-
-  }
 
 
 // Asignar funcion al boton Enviar
 
 //btnEnviar.onclick = () => Validar();
-  /*
-  btnEnviar.onclick = function(){
-      let val = Validar();
-      if(val==true){
-          mensaje.innerText = "Enviar datos al Servdidor con AJAX";
-          //----------
-          //----------
-          //---------
-      }
-  }
-  
-  
-    // evento onchange -> checkbox
-  if (chkBotton.checked){
-      boton.disabled = true;
-  }else{
-      boton.disabled = false
-  }
-  
-  const chkboton = document.getElementById("invalidCheck");
-  
-    boton.disabled = true;
-  
-    chkboton.onchange = function(){
-      if(chkboton.checked){
-        boton.disabled = false;
+    /*
+    btnEnviar.onclick = function(){
+        let val = Validar();
+        if(val==true){
+            mensaje.innerText = "Enviar datos al Servdidor con AJAX";
+            //----------
+            //----------
+            //---------
+        }
+    }
+    
+    
+      // evento onchange -> checkbox
+    if (chkBotton.checked){
+        boton.disabled = true;
     }else{
+        boton.disabled = false
+    }
+    
+    const chkboton = document.getElementById("invalidCheck");
+    
       boton.disabled = true;
-    }
-    }
-  
-    */
-</script>
+    
+      chkboton.onchange = function(){
+        if(chkboton.checked){
+          boton.disabled = false;
+      }else{
+        boton.disabled = true;
+      }
+      }
+    
+      */
+  </script>
+</section>
