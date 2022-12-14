@@ -550,3 +550,13 @@ pre {
 .corn {
   background-color: cornflowerblue;
 }
+
+a.fixed {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(2rem);
+  border-radius: 1rem;
+  outline: .1rem solid currentColor;
+}
