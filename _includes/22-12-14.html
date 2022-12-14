@@ -5,6 +5,27 @@
   </ol>
 
   <script>
+    /* en clase */
+    class Person {
+      constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+      };
+      hablar = () => { alert(`Hola mi nombre es ${this.nombre}`) } //es una funcion
+
+    }
+
+    class Student extends Person {
+      constructor(nombre, edad, programa) {
+        super(nombre, edad); //llama estas dos properties de Person
+        this.programa = programa;
+      }
+      notas;
+    }
+
+    let armandito = new Student('armandito', 11, 'abc')
+
+    console.log(armandito)
   </script>
 
 </section>

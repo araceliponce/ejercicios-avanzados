@@ -20,13 +20,13 @@
   }
   const descuento = 12.5; //12.5%
 
-
+  /* envuelto en función para escuchar click en botón */
   function funcionSueldos1() {
     let empleadoNuevo = new Empleado;
     // empleadoNuevo.sueldoBruto(); 
-    empleadoNuevo.sueldoNeto(); /* llamando a ambas funciones se repetia un console log, con llamar solo la ultima parece funcionar */
-
+    empleadoNuevo.sueldoNeto(); /* llamando a ambas funciones se repetia el primer console log de .sueldobruto() */
   }
+
   class Empleado {
     nombre;
     edad;
@@ -40,12 +40,11 @@
 
       console.log(sueldosExistentes.hasOwnProperty(suCargo)) // true | false
 
-      let cargoExiste = sueldosExistentes.hasOwnProperty(suCargo) //intenté usar un loop while pero no detectaba a suCargo o this.cargo
+      let cargoExiste = sueldosExistentes.hasOwnProperty(suCargo) //intenté usar un loop while para repetir el prompt pero no detectaba a suCargo o this.cargo
 
       let suSueldo = Object.fromEntries(Object.entries(sueldosExistentes).filter(([key]) => key.includes(suCargo))); // devuelve el par { jefe: 5000 }
 
       let sueldoBruto = suSueldo[suCargo] // devuelve solo el value 5000
-
       console.log(`El sueldo bruto correspondiente a ${suCargo} es ${sueldoBruto} soles`)
       return sueldoBruto;
     };
