@@ -1,0 +1,136 @@
+<section id="s8" aria-labelledby="s8Title">
+  <h3 id="s8Title">Actividades de S8 (12 de diciembre)</h3>
+  <ol>
+    <li>
+      <p>El mismo formulario de S6, pero usando JQuery y añadiendo los inputs de correo electronico y celular</p>
+
+      <form aria-relevant="additions text">
+        <label for="doceUsuario" class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="doceUsuario" aria-describedby="doceUsuarioDesc" minlength="4" maxlength="16" required>
+        <span id="doceUsuarioDesc" class="form-text">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener letras, números y guiones bajos</span>
+
+        <label for="doceNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="doceNombre" aria-describedby="doceNombreDesc" required>
+        <span id="doceNombreDesc" class="form-text">Solo su(s) nombre(s), no apellidos</span>
+
+        <!-- nuevos tel y correo -->
+        <label for="doceTel" class="form-label">Tel</label>
+        <input type="tel" class="form-control" id="doceTel" aria-describedby="doceTelDesc" required>
+        <span id="doceCorreoDesc" class="form-text">Su número de telefono</span>
+
+        <label for="doceCorreo" class="form-label">Correo</label>
+        <input type="email" class="form-control" id="doceCorreo" aria-describedby="doceCorreoDesc" required>
+        <span id="doceCorreoDesc" class="form-text">Su correo</span>
+
+        <label for="docePass" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="docePass" aria-describedby="docePassDesc" required>
+        <span id="docePassDesc" class="form-text">Elija una contraseña segura</span>
+
+        <label for="docePass2" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="docePass2" aria-describedby="docePass2Desc" required>
+        <span id="docePass2Desc" class="form-text">Ambas contraseñas deben ser iguales</span>
+        <button id="doceEnviar">Enviar</button>
+
+      </form>
+    </li>
+  </ol>
+  <style>
+    input,
+    label,
+    button {
+      display: flex;
+    }
+
+    label,
+    button {
+      margin-top: 1rem;
+    }
+
+    .flex {
+      display: flex;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      console.log('esta listo')
+      //this.designMode = 'on';
+    })
+
+    $(window).scroll(function () {
+      alert('hey')
+    })
+
+    $('button').click(function () {
+      // alert('click en button')
+    })
+
+    $(window).keypress(function (e) {
+      //console.log(e.key)
+    })
+
+    //const doceUsuario = document.getElementById('doceUsuario');
+    const doceNombre = document.getElementById('doceNombre');
+    // const docePass = document.getElementById('docePass');
+    // const docePass2 = document.getElementById('docePass2');
+    //let doceEnviar = document.getElementById('doceEnviar');
+
+    let noConsoleLog = document.createElement('span');
+
+
+    let specialChars = /[`!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/
+    let doceUsuarioRegExp = /[A-Za-z0-9_]/
+    let doceNombreRegExp = /^[A-Z]+([\s]?[A-Za-z])*$/; //iniciar en letra mayuscula, seguidamente un espacio(opcional) y más letras mayúsculas o minusculas
+
+    // .value      .valueAsDate      .valueAsNumber
+
+    function validarYMostrarMensaje(regularExpression, htmlEl, alertSiIncorrecto) {
+      htmlEl.parentElement.appendChild(noConsoleLog); //como appendSibling no existe
+
+      if (value = '' || !regularExpression.test(htmlEl.value)) {
+        htmlEl.className = 'form-control not-valid';
+        noConsoleLog.textContent = 'algo incorrecto';
+        alert(alertSiIncorrecto);
+      } else {
+        htmlEl.className = 'form-control valid';
+        noConsoleLog.textContent = 'todo correcto';
+        console.log(`${htmlEl.value} está correcto`);
+      }
+    }
+
+    $('#doceEnviar').click(function (e) {
+      e.preventDefault();
+
+      //let usuarioEsAceptable = $('#doceUsuario').value.lenght >= 4 && $('#doceUsuario').value.lenght <= 16; 
+      //true/false no es necesario si se usan los attributos minlenght y max lenght
+      //console.log(usuarioEsAceptable)
+
+      //if (doceUsuarioValue = '' || usuarioEsAceptable == false) {
+
+      if (specialChars.test(doceUsuario.value)) {
+        alert('Usuario tiene caracteres especiales no aceptados')
+      } else {
+        validarYMostrarMensaje(doceUsuarioRegExp, doceUsuario, 'USUARIO CUMPLE LAS CONDICIONES', 'USUARIO NO CUMPLE LAS CONDICIONES')
+      }
+
+      validarYMostrarMensaje(doceNombreRegExp, doceNombre, 'NOMBRE NO CUMPLE LAS CONDICIONES')
+
+      /* --------- */
+      let docePassV = $('#docePass').value;
+      let docePass2V = $('#docePass2').value;
+
+      console.log($('#docePass').value, $('#docePass2').value) //undefined :
+      console.log(docePassV, docePass2V); //sigue undefined
+
+      if ($('#docePass').value !== undefined && $('#docePass').value == $('#docePass2').value
+      ) {
+        alert('CONTRASEÑAS IGUALES :)')
+      } else {
+        //noConsoleLog.textContent = '*CONTRASEÑAS DIFERENTES O VACÍA(S)'
+        alert('CONTRASEÑAS DIFERENTES O VACÍA(S)')
+      }
+
+    })
+  </script>
+</section>
