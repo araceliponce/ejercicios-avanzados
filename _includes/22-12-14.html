@@ -1,14 +1,118 @@
 <section id="s10" aria-labelledby="s10Title">
   <h3 id="s10Title">Actividades de S10 (14 de diciembre)</h3>
   <ol>
-    <li></li>
+    <li>
+      <p>Un Alumno tiene : código, nombre, nota1, nota2, nota3, nota4 y las operaciones: promedio(), condicion() y obsequio(). usar constructor.
+      <ul>
+        <li>promedioPonderado = nota1*15% + nota2*20% + nota3*25% +nota4*40%;</li>
+        <li>minimo para aprobar = 12</li>
+        <li> más de 17 para obtener obsequio mochila
+        </li>
+      </ul>
+
+      </p>
+      <button onclick="iniciarCatorce()">click para añadir estudiante y notas (ver consola)</button>
+    </li>
   </ol>
 
   <script>
+
+    /* EJERCICIO */
+
+    class Persona {
+      constructor(nombre, apellidos) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+      };
+    }
+
+    class Estudiante extends Persona {
+      constructor(nombre, apellidos, notas, resultado, obsequio) {
+        super(nombre, apellidos);
+        this.notas;
+        this.resultado;
+        this.obsequio;
+      }
+    }
+
+    function iniciarCatorce() {
+      let susNotas = [];
+      let suPromedio;
+      let suResultado;
+      let suObsequio = 'ninguno';
+
+      let valoresDeNotas = [15, 20, 25, 40]
+      let valorDeCadaNota;
+      let promedio = 0;
+      let minimoParaAprobar = 12;
+      let enAdelanteObsequio = 17;
+
+
+      preguntar();
+      obtenerPromedio();
+      obtenerResultado();
+      obtenerObsequio();
+
+      let nuevoEstudiante = new Estudiante('abc', 'def', susNotas, suResultado, suObsequio);
+
+      console.log(nuevoEstudiante); //incompleto
+
+      nuevoEstudiante.notas = susNotas;
+      nuevoEstudiante.resultado = suResultado;
+      nuevoEstudiante.obsequio = suObsequio;
+      console.log(nuevoEstudiante);
+
+      function preguntar() {
+        for (i = 0; i < 4; i++) {
+          let nota = prompt(`¿Cuál es su nota ${i + 1}?`);
+          susNotas.push(nota);
+        }
+        console.log(susNotas);
+        return susNotas;
+      }
+
+      function obtenerPromedio() {
+        suPromedio = 0;
+        susNotas.forEach((nota, indice) => {
+          // console.log(nota)
+          valorDeCadaNota = +nota * +valoresDeNotas[indice] / 100;
+          console.log(`valor de nota ${indice + 1}: ${valorDeCadaNota}`)
+
+          // console.log({ suPromedio })
+          suPromedio += valorDeCadaNota;
+          // console.log({ suPromedio })
+
+        })
+        suPromedio = suPromedio.toFixed(2);
+        console.log({ suPromedio });
+
+        return suPromedio;
+      }
+
+      function obtenerResultado() {
+        if (suPromedio < minimoParaAprobar) {
+          suResultado = 'desaprobado'
+        } else {
+          suResultado = 'aprobado'
+          obtenerObsequio();
+        }
+
+        console.log({ suObsequio }, { suResultado })
+        return suResultado;
+      }
+
+      function obtenerObsequio() {
+        if (promedio > enAdelanteObsequio) {
+          suObsequio = 'mochila';
+
+          return suObsequio;
+        }
+      }
+    }
+    /* FINAL DE EJERCICIO */
+
     /* en clase */
-
-
-    class Person {
+    class Person1 {
       constructor(nombre, edad) {
         this.nombre = nombre;
         this.edad = edad;
@@ -17,20 +121,11 @@
 
     }
 
-    class Student extends Person {
-      constructor(nombre, edad, programa) {
-        super(nombre, edad); //llama estas dos properties de Person
-        this.programa = programa;
-      }
-      notas;
-    }
-
     //distintas formas de obtener sus properties
     const name = prompt('¿cual es su nombre');
     armandito.programa = prompt('programa?')
     let armandito = new Student(name, 11)
-
-    console.log(armandito)
+    //console.log(armandito)
   </script>
 
 </section>
