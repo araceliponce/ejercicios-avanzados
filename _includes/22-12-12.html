@@ -79,7 +79,7 @@
     let unSpan = document.createElement('span');
 
 
-    let specialChars = /[`!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/
+    let weirdChars = /[`!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/
     let doceUsuarioRegExp = /[A-Za-z0-9_]/
     let doceNombreRegExp = /^[A-Z]+([\s]?[A-Za-z])*$/; //iniciar en letra mayuscula, seguidamente un espacio(opcional) y más letras mayúsculas o minusculas
 
@@ -108,7 +108,7 @@
 
       //if (doceUsuarioValue = '' || usuarioEsAceptable == false) {
 
-      if (specialChars.test(doceUsuario.value)) {
+      if (weirdChars.test(doceUsuario.value)) {
         alert('Usuario tiene caracteres especiales no aceptados')
       } else {
         validarYMostrarMensaje(doceUsuarioRegExp, doceUsuario, 'USUARIO CUMPLE LAS CONDICIONES', 'USUARIO NO CUMPLE LAS CONDICIONES')

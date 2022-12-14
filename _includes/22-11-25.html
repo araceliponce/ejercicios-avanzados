@@ -36,9 +36,10 @@
     'damas': 58.50,
     'laberinto': 35.00
   } //An identifier in JavaScript contains Unicode letters, $, _, and digits 0..9, but cannot start with a digit https://dmitripavlutin.com/access-object-properties-javascript/
-  console.log({ preciosJuguetesDeMesa });
 
   btnJuguetes.addEventListener('click', () => {
+    console.log({ preciosJuguetesDeMesa });
+
     let jugueteEscogido = prompt('¿Qué juguete quieres comprar?');
     console.log(Object.hasOwn(preciosJuguetesDeMesa, jugueteEscogido.toLowerCase()));
 
