@@ -3,10 +3,77 @@
   <ol>
     <li>
       <p>Crear el siguiente objeto JSON con JavaScript e imprima todos los datos en una tabla de HTML5.</p>
-      <img src="" alt="">
-    </li>
-  </ol>
-  <script>
+      <img src="{{site.url}}/includes/json.png" alt="">
+      <button>Tabla generada, ver consola</button>
 
-  </script>
+      <table class="d-none">
+        <thead>
+          <tr>
+            <th>esta es una tabla html5</th>
+            <th>soy la 2da col del header</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>soy parte del cuerpo de la tabla</td>
+            <td>soy la 2da columna de este row y contento un parrafo muy extenso</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th><b>ID</b></th>
+            <th><b>NOMBRE</b></th>
+            <th><b>APELLIDO</b></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+
+      <script>
+        //Basado en https://dev.to/manuthecoder/let-s-create-a-table-using-json-and-javascript-4nc0
+
+        let arrayIds16 = ['1', '2', '3'];
+        let arrayNombres16 = ['Ana', 'Antonio', 'Elba']
+        let arrayApellidos16 = [];
+        arrayApellidos16[0] = 'Pérez';
+        arrayApellidos16[1] = 'Lazo';
+        arrayApellidos16[2] = 'Macías';
+
+        let jsonData16 = {
+          tabla: []
+        };
+
+        for (var i = 0; i < arrayNombres16.length; i++) {
+          jsonData16.tabla.push({
+            'id': arrayIds16[i],
+            'nombre': arrayNombres16[i],
+            'apellido': arrayApellidos16[i],
+          });
+        };
+
+        let dataForTable = jsonData16.tabla; //son lo mismo
+        let dataButIsString = JSON.stringify(jsonData16.tabla);
+        let dataIsObject = JSON.parse(dataButIsString) //son lo mismo
+        console.log(`dataForTable = `, dataForTable)
+
+        //let entries = Object.entries(dataIsObject) //objeto en 3 arrays distintos
+
+        console.log('dataButIsString:', dataButIsString)
+        console.log(`dataIsObject = `, dataIsObject)
+
+        let tableBody = document.getElementById('tableBody');
+        dataForTable.forEach(element => {
+
+          let rowHTML = `<tr><td>${element.id}</td><td>${element.nombre}</td><td>${element.apellido}</td></tr>`;
+
+          tableBody.insertAdjacentHTML('beforeend', rowHTML);
+        })
+      </script>
+
+
+
 </section>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- https://docs.google.com/document/d/12rdNMNFVmyFGlq4fup4XxyBbGPVwh3RYBWqYojzikVc/edit?usp=sharing -->
+
+
+  <!-- https://docs.google.com/document/d/1tMX29Ev5S_XVoXwtcMGAWd2m_szgWDP7Yak5AcYXKyY/edit es lo mismo we--> 
+  
+  refuerzo2 hacer solos, subir en s11, pokemones (ejerciios 1-10, 11 y 12 opcionales)
+
+  <script>
+    let products = [
+    { id: 1, name: "tv", description: "TV 55 Pulgadas", brand: "chanchum", type: "tech" },
+    { id: 3, name: "cellphone", description: "Androy 6/128GB", brand: "chaiomi", type: "tech" },
+    { id: 2, name: "tv", description: "TV 55 Pulgadas", brand: "elyi", type: "tech" },
+    { id: 4, name: "tv", description: "TV 65 Pulgadas", brand: "panachonic", type: "tech" },
+    { id: 5, name: "cellphone", description: "Aifon 6/256GB", brand: "apol", type: "tech" },
+    { id: 6, name: "bed", description: "KingSize", brand: "paiso", type: "home" },
+    { id: 10, name: "bed", description: "QueenSize", brand: "rochen", type: "home" },
+    { id: 8, name: "washing machine", description: "12Lt", brand: "elyi", type: "home" },
+    { id: 9, name: "washing machine", description: "10Lt", brand: "panachonic", type: "home" },
+    { id: 7, name: "tv", description: "TV 75 Pulgadas", brand: "chanchum", type: "tech" },
+]
+ 
+//1. Crear una función que permita filtrar el arreglo de productos por cada atributo.
+ 
+    function filterProductsBy(atribute, value){
+        const validAtributes = Object.keys(products[0])
+        if (validAtributes.includes(atribute)){
+            return products.filter(product => product[atribute] === value)
+        } else {
+            return "El atributo ingresado no existe"
+        }
+    }
+ 
+    //console.log(filterProductsBy("price", 1))
+ 
+//2. Crear una función que permita ordenar el arreglo de productos por cada atributo (en orden alfabetico).
+ 
+    function ordenarProductosPorAtributo(atributo){
+        if (typeof products[0][atributo] === "string"){
+            return products.sort((a,b) => {return a[atributo].localeCompare(b[atributo])})
+        } else if (typeof products[0][atributo] === "number"){
+            return products.sort((a,b) => {return a[atributo] - b[atributo]})
+        } else {
+            return "Por favor utiliza un atributo válido"
+        }
+    }
+   
+    //console.log(ordenarProductosPorAtributo("id"))
+ 
+//3. Crear una función que permita imprimir en pantalla los datos del objeto.
+    //El name, brand y type deben imprimirse en formato Capitalizado.
+   
+    function capitalizarFrase(string){
+        let palabras = string.split(" ")
+        let palabrasCapitalizadas = palabras.map(palabra => {return capitalizarPalabra(palabra)})
+        return palabrasCapitalizadas.join(" ")
+    }
+ 
+    function capitalizarPalabra(palabra){
+        return palabra.charAt(0).toUpperCase() + palabra.slice(1)
+    }
+   
+    function imprimirDatosDeObjeto(objeto){
+        let arreglo = ["name", "type", "brand"]
+        for(const prop in objeto){
+            if (arreglo.includes(prop)){
+                console.log(`${prop} : ${capitalizarFrase(objeto[prop])}`)
+            } else {
+                console.log(`${prop} : ${objeto[prop]}`)
+            }
+        }
+    }
+     
+//4. Añadir el atributo price a cada objeto. Para añadirlo utilizar un numero aleatorio entre 500 y 1500 para cada uno.
+    function generarAleatorioEntre(max, min){
+        return (Math.random() * (Math.floor(max) - Math.ceil(min)) + Math.ceil(min)).toFixed(2)
+    }
+ 
+    function addPrice(){
+        for(const index in products){
+            products[index].price = generarAleatorioEntre(500, 1500)
+        }
+        return products
+    }
+   
+//5. Crear una función que me permita filtrar productos por precio, permitiendome filtrar aquellos que son menores
+//   a un valor que yo ingrese.
+ 
+//CRUD -> CREATE READ UPDATE DELETE
+ 
+//CREATE comment
+ 
+//READ comment
+ 
+//UPDATE comment
+ 
+//DELETE comment
+ 
+//6. Crear una función que me permita crear un nuevo objeto, ingresando los datos con formularios. Cuando se cree un nuevo
+//   objeto, el id no debe repetirse.
+ 
+//7. Crear una función que me permita modificar los atributos de un objeto que haya seleccionado.
+ 
+//8. Crear una función que me permita borrar uno o varios productos de mi arreglo según los valores de sus atributos.
+ 
+ 
+
+
+
+
+
+
+
+
+const root = document.getElementById("root")
+const table = document.createElement("table")
+table.setAttribute('border', '1')
+root.append(table)
+ 
+let products = [
+    { id: 1, name: "tv", description: "TV 55 Pulgadas", brand: "chanchum", type: "tech" },
+    { id: 3, name: "cellphone", description: "Androy 6/128GB", brand: "chaiomi", type: "tech" },
+    { id: 2, name: "tv", description: "TV 55 Pulgadas", brand: "elyi", type: "tech" },
+    { id: 4, name: "tv", description: "TV 65 Pulgadas", brand: "panachonic", type: "tech" },
+    { id: 5, name: "cellphone", description: "Aifon 6/256GB", brand: "apol", type: "tech" },
+    { id: 6, name: "bed", description: "KingSize", brand: "paiso", type: "home" },
+    { id: 10, name: "bed", description: "QueenSize", brand: "rochen", type: "home" },
+    { id: 8, name: "washing machine", description: "12Lt", brand: "elyi", type: "home" },
+    { id: 9, name: "washing machine", description: "10Lt", brand: "panachonic", type: "home" },
+    { id: 7, name: "tv", description: "TV 75 Pulgadas", brand: "chanchum", type: "tech" },
+]
+ 
+const encabezados = document.createElement("thead")
+for (const key in products[0]){
+    const th = document.createElement("th")
+    th.textContent = key
+    encabezados.append(th)
+}
+table.append(encabezados)
+ 
+for (const index in products){
+    const tr = document.createElement("tr")
+        for (const key in products[index]){
+            const td = document.createElement("td")
+            td.textContent = products[index][key]
+            tr.append(td)
+        }
+    table.append(tr)
+}
+ 
+function capitalizarPalabra(palabra){
+    return palabra.charAt(0).toUpperCase() + palabra.slice(1)
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let pokemons = [
+    {id: 1, name: "charmander", type: "fire", base_damage: 10, base_hp: 12, speed: 30},
+    {id: 2, name: "squirtle", type: "water", base_damage: 9, base_hp: 14, speed: 26},
+    {id: 3, name: "bulbasaur", type: "leaf", base_damage: 8, base_hp: 16, speed: 26},
+    {id: 4, name: "pikachu", type: "electric", base_damage: 12, base_hp: 8, speed: 32},
+    {id: 5, name: "pidgey", type: "air", base_damage: 10, base_hp: 10, speed: 35},
+    {id: 6, name: "goldeen", type: "water", base_damage: 9, base_hp: 12, speed: 32},
+    {id: 7, name: "bellsprout", type: "leaf", base_damage: 10, base_hp: 12, speed: 30},
+    {id: 8, name: "magnemite", type: "electric", base_damage: 9, base_hp: 14, speed: 30},
+    {id: 9, name: "ponyta", type: "fire", base_damage: 12, base_hp: 18, speed: 36},
+    {id: 10, name: "evee", type: "normal", base_damage: 10, base_hp: 12, speed: 30},
+]
+ 
+//1. Ordernar los pokemons por base_damage de menor a mayor.
+ 
+//2. Crear una funcion para ordernar los pokemons dependiendo de el argumento que se ingrese en la funcion. Pueden ingresar: type, base_damage, base_hp o speed.
+ 
+//3. Crear una funcion que filtre el objeto pokemons y devuelva un arreglo con los pokemons filtrados. La funcion debe aceptar un argumento para filtrar por type de pokemon.
+ 
+//4. Crear un objeto llamado Pokemon Master que tenga los siguientes atributos: id: number, name: string, created_date: string, y pokemon: array of objects.
+ 
+//5. Crear una funcion que de manera aleatoria agregue un nuevo pokemon al atributo pokemon de Pokemon Master.
+ 
+//6. Crear una funcion que agregue de manera aleatoria los atributos min_damage y max_damage a nuestro arreglo de pokemons teniendo en cuenta lo siguiente:
+// min_damage debe ser un numero entero aleatorio entre 1 y 2 y max_damage debe ser un numero entero aleatorio entre 3 y 5
+ 
+//7. Crear una funcion que determine el daño que hara un pokemon elegido de la lista ante una posible pelea, para ello considerar que el daño que hara el pokemon es:
+// daño = base_damage + un valor aleatorio entre el min_damage y el max_damage
+ 
+//8. Nuestro Pokemon Master quiere estar preparado para pelear, para ello necesita que lo apoyes a ordenar sus pokemons. Colocar tres pokemons con la funcion del ejercicio 5.
+// El quiere que sus pokemons se ordenen de manera que el que tenga un mayor valor posible de base_damage + max_damage sea el que este primero en la lista y asi sucesivamente.
+ 
+//9. Crear una lista desordenada de Pokemons en nuestro documento HTML
+ 
+//10. Utilizando javascript crear una tabla de pokemons con las siguientes columnas: id, name, type, base_damage, base_hp, speed
+ 
+//11. Utilizando javascript modifica el codigo creado en el ejecicio anterior y agrega un evento que permita ordenar los pokemons haciendo click en sus encabezados.
+ 
+//12. Corrige la function sortPokemons para que acepte ordenarlos segun id y name.
+ 
+
+
+
+
+  </script>
+</body>
+</html>
