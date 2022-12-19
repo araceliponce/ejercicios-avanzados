@@ -47,7 +47,11 @@ bower_components
 Gemfile
 Gemfile.lock
 .gitignore
+<<<<<<< HEAD
 
 
 searchs.html
 doc1.html
+=======
+searchs.html
+>>>>>>> 40b7b5dd832e086aeb75362b019efd1a86b09499

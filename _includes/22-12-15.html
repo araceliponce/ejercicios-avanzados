@@ -3,9 +3,281 @@
   <ol>
     <li>
       <p>Crear una aplicación web que guarda en un array 10 números enteros que se leen por teclado. A continuación, se recorre el array y calcula cuántos números son positivos, cuántos negativos y cuántos ceros.</p>
+      <label for="diezNumerosEnteros">Escriba 10 numero enteros</label>
+      <textarea name="" id="diezNumerosEnteros"></textarea>
+      <button id="btnDiezNumerosEnteros">Click</button>
     </li>
   </ol>
+
+<!--   <script>
+    let frutas = {};
+
+    frutas = {
+      manzana: 'roja',
+      pera: 'verde',
+    }
+
+    for (key in frutas) {
+      console.log(key)
+    }
+
+    let quincePersonas = [
+      { id: 1, nombre: 'andres', apellido: 'perez' },
+      { id: 2, nombre: 'julio', apellido: 'perez' },
+      { id: 3, nombre: 'juan', apellido: 'noperez' },
+    ]
+
+    // console.log(quincePersonas[1])
+    // console.log(quincePersonas[1].nombre)
+
+    quincePersonas.forEach(persona => {
+      console.log(persona) //todos los objetos
+    })
+
+
+    console.log(buscarObjectoEnSi(quincePersonas, 'nombre', 'juan'))
+    //es lo mismo que: quincePersonas.find(quincePersonas =>quincePersonas['nombre']==='juan') 
+    console.log(filtrarObjectoEnSi(quincePersonas, 'apellido', 'perez'))
+
+    function buscarObjectoEnSi(array, key, value) {
+      return array.find(array => array[key] === value)
+    }
+
+    function filtrarObjectoEnSi(array, key, value) {
+      return array.filter(array => array[key] === value)
+    }
+    //FIND encuentra el primero
+    //FILTER encuentra todos no solo el primero
+    //console.log(quincePersonas.find(quincePersonas => quincePersonas.id === 2)) //tanto .id  como ['id'] funcionan
+
+
+    /*  let edades = [15, 18, 35]
+     console.log(edades.filter(edad => edad >= 18)); */
+
+  </script> -->
+
   <script>
+    let products = [
+    { id: 1, name: "tv", description: "TV 55 Pulgadas", brand: "chanchum", type: "tech" },
+    { id: 3, name: "cellphone", description: "Androy 6/128GB", brand: "chaiomi", type: "tech" },
+    { id: 2, name: "tv", description: "TV 55 Pulgadas", brand: "elyi", type: "tech" },
+    { id: 4, name: "tv", description: "TV 65 Pulgadas", brand: "panachonic", type: "tech" },
+    { id: 5, name: "cellphone", description: "Aifon 6/256GB", brand: "apol", type: "tech" },
+    { id: 6, name: "bed", description: "KingSize", brand: "paiso", type: "home" },
+    { id: 10, name: "bed", description: "QueenSize", brand: "rochen", type: "home" },
+    { id: 8, name: "washing machine", description: "12Lt", brand: "elyi", type: "home" },
+    { id: 9, name: "washing machine", description: "10Lt", brand: "panachonic", type: "home" },
+    { id: 7, name: "tv", description: "TV 75 Pulgadas", brand: "chanchum", type: "tech" },
+]
+ 
+    function obtenerProductoPorId(id){
+        return products.find(product => product.id === id)
+    }
+    
+    function obtenerProductosPorNombre(nombre){
+        return products.filter(product => product.name === nombre)
+    }
+
+    //busca hasta encontrar el primero  
+    function buscarObjectoEnSi(array, key, value) {
+
+      let keysValidos = Object.keys(array[0]);
+      if(keysValidos.includes(key)){
+        return array.find(array => array[key] === value)
+      }
+      else{
+        return `El key ${key} no existe, porfavor, ingresar uno válido: ${keysValidos}`
+      }
+    }
+
+    //filtra varios objetos
+    function filtrarObjectoEnSi(array, key, value) {
+
+      let keysValidos = Object.keys(array[0]); //array de keys, puede usarse el objeto[0] (el 1er producto) ya que todos tienen los mismos keys
+
+      //si el usuario usa un key que no es valido ( no se encuentra en el objeto 0), entonces retorna un mensaje
+
+      if(keysValidos.includes(key)){
+        return array.filter(array => array[key] === value)
+      }
+      else{
+        return `El key ${key} no existe, porfavor, ingresar uno válido: ${keysValidos}`
+      }
+    }
+ 
+//1. Crear una función que permita filtrar el arreglo de productos por cada atributo.
+
+
+// console.log ('productos filtrados:', filtrarObjectoEnSi(products,'precio','home'));
+// console.log ('productos filtrados:', filtrarObjectoEnSi(products,'type','home'));
+
+ 
+//2. Crear una función que permita ordenar el arreglo de productos por cada atributo (en orden alfabetico).
+//en orden alfabetico de nombre???
+
+
+function ordenarProductosPorKey(key){
+
+  console.log(`ordenando productos de key : ${key}`);
+  if(typeof products[0][key] === 'string'){
+    //locale compare compara strings
+    return products.sort((a,b)=>{return a[key].localeCompare(b[key])});
+
+  } if(typeof products[0][key] === 'number'){
+    return products.sort((a,b)=>{return a[key] - b[key]});
+
+  } else{
+    return 'no puedo ordenar este tipo de dato';
+  }
+
+}
+
+// console.log('productos sorted:', ordenarProductosPorKey('abc'));
+
+
+
+ 
+//3. Crear una función que permita imprimir en pantalla los datos del objeto.
+    //El name, brand y type deben imprimirse en formato Capitalizado.
+
+
+//substr esta siendo deprecado, ahora se usa slice
+// washing.slice(1) = ashing
+// concat junta arrays y devuelve array
+//join une y retorna un string
+    // let frase = 'washing machine';
+    // let palabra = 'washing';
+
+    function capitalizarPalabra (palabra){
+
+      palabra = palabra.toString();
+
+      return palabra.charAt(0).toUpperCase() + palabra.slice(1)  //es charAt y toUpperCase
+
+    } 
+
+
+    function capitalizarFrase (frase){
+
+      frase = frase.toString(); //por los values de 'id' que son numeros
+      let palabras = frase.split(' ')
+
+      // let palabrasCapitalizadas = palabras.map(elemento => {return capitalizarPalabra(elemento)});
+      let palabrasCapitalizadas = palabras.map(function(elemento) {return capitalizarPalabra(elemento)}); // usar parentesis cuando es mas de un parametro
+
+      return palabrasCapitalizadas.join (' ');
+    } 
+
+
+    function imprimirDatosDeObjeto(objeto){
+
+      //console.log(objeto);     
+
+      for(const prop in objeto){
+        console.log(`${capitalizarFrase(prop)} : ${capitalizarFrase(objeto[prop])} `)
+      }
+    }
+
+
+    imprimirDatosDeObjeto(products[0]);
+
+
+
+ 
+//4. Añadir el atributo price a cada objeto. Para añadirlo utilizar un numero aleatorio entre 500 y 1500 para cada uno.
+ products.forEach( producto =>{
+  //let rand = Math.floor(Math.random()*1500);
+  // let producto.price = rand;
+  // console.log('con precios:',products)
+ })
+
+ function getRandBetween(max,min){
+  return (Math.random() * (max - min) + min).toFixed(2);
+ }
+
+ for (const index in products){
+  products[index].price = getRandBetween(500,1500)
+ }
+ console.log(products)
+
+
+
+
+//5. Crear una función que me permita filtrar productos por precio, ingresando tambien el parametro mayor o menor que.
+function filtrarProductosPrecio (value1, value2) {
+      return productos.filter(productos => productos[precio] >=value1 && productos[precio]<=value2);
+    }
+// console.log( filtrarObjetoPrecio(1300,1500))
+ //hace 5,6 7 y 8 hasta las 11am;;;;;;;
+
+
+ //ahora: función que me permita filtrar productos por precio, permitiendome filtrar aquellos que son menores
+//   a un valor que yo ingrese.
+
+
+let algo = 1234;
+
+let result = typeof algo === 'number'? algo/3 :algo.charAt(2);
+
+// cumpla una condicion ? si sí, esto: si no, esto
+
+console.log(result) //lo unico es que tendrias que estar seguro que no van a haber booleans
+
+// CREATE READ UPDATE DELETE => CRUD
+//6. Crear una función que me permita crear un nuevo objeto, ingresando los datos con prompts.
+
+
+let numeros = [ 1,3,5,6,7]
+
+for(let i in numeros){
+  const li = document.createElement('li');
+  li.textContent = numeros[i];
+
+  document.documentElement.append(li)
+}
+
+//!POKEMONES ES TAREA
+ 
+//7. Crear una función que me permita modificar los atributos de un objeto que haya seleccionado.
+ 
+//8. Crear una función que me borrar uno o varios productos de mi arreglo según los valores de sus atributos.
+
 
   </script>
+
+  <!-- 
+  <script>
+    const diezNumerosEnteros = document.getElementById('diezNumerosEnteros');
+    const btnDiezNumerosEnteros = document.getElementById('btnDiezNumerosEnteros');
+
+    let diezNumerosEnterosValue;
+    let diezNumerosSeparados; //obtienen sus valores en el evento input
+
+    let counterNegativos = 0;
+    let counterCeros = 0;
+    let counterPositivos = 0;
+
+    diezNumerosEnteros.addEventListener('input', () => {
+      diezNumerosEnterosValue = diezNumerosEnteros.value;
+      diezNumerosSeparados = diezNumerosEnterosValue.split(' ');
+      console.log({ diezNumerosSeparados });
+    })
+
+    btnDiezNumerosEnteros.addEventListener('click', () => {
+      if (diezNumerosSeparados.length == 10) {
+        diezNumerosSeparados.forEach(num => {
+          if (num < 0) {
+            counterNegativos++
+            console.log(num)
+          } else if (num == 0) {
+            counterCeros++
+            console.log(num)
+          } else {
+            counterPositivos++
+            console.log(num) //NO FUNCIONA
+          }
+        });
+      }
+    })
+  </script> -->
 </section>
