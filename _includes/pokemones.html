@@ -16,9 +16,9 @@
 ]
 </pre>
 
-  <ol>
-    <li>Ver consola</li>
-  </ol>
+
+
+  <button onclick="initPokemones()">Click y ver consola</button>
 
   <table></table>
 
@@ -63,176 +63,180 @@
       { id: 10, name: "evee", type: "normal", base_damage: 10, base_hp: 12, speed: 30 },
     ]
 
-    //1. Ordernar los pokemons por base_damage de menor a mayor.
+
+    function initPokemones() {
 
 
-    //es la misma funcion y ordena tanto strings como numeros
+      //1. Ordernar los pokemons por base_damage de menor a mayor.
 
-    let pokeResultado1 = pokeOrdenarPorKey('base_damage')
-    console.log(pokeResultado1)
-    function pokeOrdenarPorKey(key) {
-      console.log('1: ordenando pokemones por key (de menor a mayor):', key)
 
-      if (typeof pokemons[0][key] === "string") {
-        return pokemons.sort((a, b) => { return a[key].localeCompare(b[key]) })
-      } else if (typeof pokemons[0][key] === "number") {
-        return pokemons.sort((a, b) => { return a[key] - b[key] })
-      } else {
-        return "Por favor utiliza un key válido"
+      //es la misma funcion y ordena tanto strings como numeros
+
+      let pokeResultado1 = pokeOrdenarPorKey('base_damage')
+      console.log(pokeResultado1)
+      function pokeOrdenarPorKey(key) {
+        console.log('1: ordenando pokemones por key (de menor a mayor):', key)
+
+        if (typeof pokemons[0][key] === "string") {
+          return pokemons.sort((a, b) => { return a[key].localeCompare(b[key]) })
+        } else if (typeof pokemons[0][key] === "number") {
+          return pokemons.sort((a, b) => { return a[key] - b[key] })
+        } else {
+          return "Por favor utiliza un key válido"
+        }
       }
-    }
 
 
 
-    //2. Crear una funcion para ordenar los pokemons dependiendo de el argumento que se ingrese en la funcion. Pueden ingresar: type, base_damage, base_hp o speed.
+      //2. Crear una funcion para ordenar los pokemons dependiendo de el argumento que se ingrese en la funcion. Pueden ingresar: type, base_damage, base_hp o speed.
 
-    let pokeResultado2 = [];
-    pokeResultado2 = pokeFilterPokemonsBy('speed', 30)
+      let pokeResultado2 = [];
+      pokeResultado2 = pokeFilterPokemonsBy('speed', 30)
 
-    console.log(pokeResultado2);
+      console.log(pokeResultado2);
 
-    function pokeFilterBetterPokemons(key, value) {
-      console.log('2: filtrando pokemones dependiendo de speed mayor o igual a 30: ', key, value);
-      const validKeys = Object.keys(pokemons[0]);
-      if (validKeys.includes(key)) {
-        return pokemons.filter(pokemons => pokemons[key] >= value)
-      } else {
-        return "El key ingresado no existe"
+      function pokeFilterBetterPokemons(key, value) {
+        console.log('2: filtrando pokemones dependiendo de speed mayor o igual a 30: ', key, value);
+        const validKeys = Object.keys(pokemons[0]);
+        if (validKeys.includes(key)) {
+          return pokemons.filter(pokemons => pokemons[key] >= value)
+        } else {
+          return "El key ingresado no existe"
+        }
       }
-    }
 
-    //3. Crear una funcion que filtre el objeto pokemons y devuelva un arreglo con los pokemons filtrados. La funcion debe aceptar un argumento para filtrar por type de pokemon.
+      //3. Crear una funcion que filtre el objeto pokemons y devuelva un arreglo con los pokemons filtrados. La funcion debe aceptar un argumento para filtrar por type de pokemon.
 
-    let pokeResultado3 = [];
-    pokeResultado2 = pokeFilterPokemonsBy('type', 'water')
-    let pokeResultado3Alterno = pokemons.filter(pokemons => pokemons['type'] === 'water');
-    console.log(pokeResultado3Alterno);
+      let pokeResultado3 = [];
+      pokeResultado2 = pokeFilterPokemonsBy('type', 'water')
+      let pokeResultado3Alterno = pokemons.filter(pokemons => pokemons['type'] === 'water');
+      console.log(pokeResultado3Alterno);
 
-    function pokeFilterPokemonsBy(key, value) {
-      console.log('2: filtrando pokemones dependiendo de 2 parametros, key y value: ', key, value);
-      const validKeys = Object.keys(pokemons[0]);
-      if (validKeys.includes(key)) {
-        return pokemons.filter(pokemons => pokemons[key] === value)
-      } else {
-        return "El key ingresado no existe"
+      function pokeFilterPokemonsBy(key, value) {
+        console.log('2: filtrando pokemones dependiendo de 2 parametros, key y value: ', key, value);
+        const validKeys = Object.keys(pokemons[0]);
+        if (validKeys.includes(key)) {
+          return pokemons.filter(pokemons => pokemons[key] === value)
+        } else {
+          return "El key ingresado no existe"
+        }
       }
-    }
 
-    //4. Crear un objeto llamado Pokemon Master que tenga los siguientes atributos: id: number, name: string, created_date: string, y pokemon: array of objects.
-    //objeto {}
+      //4. Crear un objeto llamado Pokemon Master que tenga los siguientes atributos: id: number, name: string, created_date: string, y pokemon: array of objects.
+      //objeto {}
 
-    /* class PokemonMaster = {
-      constructor(id, number, name, created_date, pokemon) {
-        this.id : id;
-        this.number : number;
-        this.name : name;
-        this.created_date : created_date;
-        this.pokemon : pokemon;
-      };
-    } */
+      /* class PokemonMaster = {
+        constructor(id, number, name, created_date, pokemon) {
+          this.id : id;
+          this.number : number;
+          this.name : name;
+          this.created_date : created_date;
+          this.pokemon : pokemon;
+        };
+      } */
 
-    let pokemonMaster = {
-      id: 0,
-      number: 0,
-      name: '',
-      createdDate: '',
-      pokemon: {},
-    }
+      let pokemonMaster = {
+        id: 0,
+        number: 0,
+        name: '',
+        createdDate: '',
+        pokemon: {},
+      }
 
-    for (const index in pokemons) {
-      // console.log(index);
-      pokemons[index][pokemonMaster] = pokemonMaster;
-    }
-    console.log('4: objeto pokemon master creado')
-
+      for (const index in pokemons) {
+        // console.log(index);
+        pokemons[index][pokemonMaster] = pokemonMaster;
+      }
+      console.log('4: objeto pokemon master creado')
 
 
-    //5. Crear una funcion que de manera aleatoria agregue un nuevo pokemon al atributo pokemon de Pokemon Master.
 
-    /*  let randIndex;
-   let randPokemon = getRandPokemon();
-   console.log(randPokemon);
+      //5. Crear una funcion que de manera aleatoria agregue un nuevo pokemon al atributo pokemon de Pokemon Master.
 
-     getRandPokemon();
-       sendRandPokemon();
-       function getRandPokemon() {
-         randIndex = Math.random() * pokemons.length;
-         return pokemons[randIndex];
-       }
-   
-   
-       function sendRandPokemon() {
-         randIndex = Math.random() * pokemons.length;
-         console.log(randPokemon.pokemonMaster)
+      /*  let randIndex;
+     let randPokemon = getRandPokemon();
+     console.log(randPokemon);
+  
+       getRandPokemon();
+         sendRandPokemon();
+         function getRandPokemon() {
+           randIndex = Math.random() * pokemons.length;
+           return pokemons[randIndex];
+         }
+     
+     
+         function sendRandPokemon() {
+           randIndex = Math.random() * pokemons.length;
+           console.log(randPokemon.pokemonMaster)
+         } */
+
+      /*
+  
+       function createNewPokemonMaster(number, name, pokemon) {
+  
        } */
 
-    /*
+      //6. Crear una funcion que agregue de manera aleatoria los atributos min_damage y max_damage a nuestro arreglo de pokemons teniendo en cuenta lo siguiente:
+      // min_damage debe ser un numero entero aleatorio entre 1 y 2 y max_damage debe ser un numero entero aleatorio entre 3 y 5
 
-     function createNewPokemonMaster(number, name, pokemon) {
+      //7. Crear una funcion que determine el daño que hara un pokemon elegido de la lista ante una posible pelea, para ello considerar que el daño que hara el pokemon es:
+      // daño = base_damage + un valor aleatorio entre el min_damage y el max_damage
 
-     } */
+      //8. Nuestro Pokemon Master quiere estar preparado para pelear, para ello necesita que lo apoyes a ordenar sus pokemons. Colocar tres pokemons con la funcion del ejercicio 5.
+      // El quiere que sus pokemons se ordenen de manera que el que tenga un mayor valor posible de base_damage + max_damage sea el que este primero en la lista y asi sucesivamente.
 
-    //6. Crear una funcion que agregue de manera aleatoria los atributos min_damage y max_damage a nuestro arreglo de pokemons teniendo en cuenta lo siguiente:
-    // min_damage debe ser un numero entero aleatorio entre 1 y 2 y max_damage debe ser un numero entero aleatorio entre 3 y 5
+      //9. Crear una lista desordenada de Pokemons en nuestro documento HTML
 
-    //7. Crear una funcion que determine el daño que hara un pokemon elegido de la lista ante una posible pelea, para ello considerar que el daño que hara el pokemon es:
-    // daño = base_damage + un valor aleatorio entre el min_damage y el max_damage
-
-    //8. Nuestro Pokemon Master quiere estar preparado para pelear, para ello necesita que lo apoyes a ordenar sus pokemons. Colocar tres pokemons con la funcion del ejercicio 5.
-    // El quiere que sus pokemons se ordenen de manera que el que tenga un mayor valor posible de base_damage + max_damage sea el que este primero en la lista y asi sucesivamente.
-
-    //9. Crear una lista desordenada de Pokemons en nuestro documento HTML
-
-    //10. Utilizando javascript crear una tabla de pokemons con las siguientes columnas: id, name, type, base_damage, base_hp, speed
+      //10. Utilizando javascript crear una tabla de pokemons con las siguientes columnas: id, name, type, base_damage, base_hp, speed
 
 
 
 
-    const table = document.querySelector("table")
-    table.setAttribute('border', '1')
+      const table = document.querySelector("table")
+      table.setAttribute('border', '1')
 
-    window.addEventListener('DOMContentLoaded', () => {
       construirCabecera();
       construirCuerpo();
       console.log('10: tabla creada')
-    })
 
 
-    function construirCabecera() {
-      const encabezados = document.createElement("thead")
-      for (const key in pokemons[0]) {
-        const th = document.createElement("th")
-        th.textContent = key
-        encabezados.append(th);
 
-        th.style.background = 'grey'
-          ;
+      function construirCabecera() {
+        const encabezados = document.createElement("thead")
+        for (const key in pokemons[0]) {
+          const th = document.createElement("th")
+          th.textContent = key
+          encabezados.append(th);
 
-        th.addEventListener('click', () => {
-          pokeOrdenarPorKey(key);
+          th.style.background = 'grey'
+            ;
 
-          table.innerHTML = ''; //desaparece la tabla y vuelve a construirse
-          construirCabecera();
-          construirCuerpo();
-        })
-      }
-      table.append(encabezados)
-    }
+          th.addEventListener('click', () => {
+            pokeOrdenarPorKey(key);
 
-
-    function construirCuerpo() {
-      for (const index in pokemons) {
-        const tr = document.createElement("tr")
-        for (const key in pokemons[index]) {
-          const td = document.createElement("td")
-          td.textContent = pokemons[index][key]
-          tr.append(td)
+            table.innerHTML = ''; //desaparece la tabla y vuelve a construirse
+            construirCabecera();
+            construirCuerpo();
+          })
         }
-        table.append(tr)
+        table.append(encabezados)
       }
+
+
+      function construirCuerpo() {
+        for (const index in pokemons) {
+          const tr = document.createElement("tr")
+          for (const key in pokemons[index]) {
+            const td = document.createElement("td")
+            td.textContent = pokemons[index][key]
+            tr.append(td)
+          }
+          table.append(tr)
+        }
+      }
+
+
     }
-
-
 
 
 

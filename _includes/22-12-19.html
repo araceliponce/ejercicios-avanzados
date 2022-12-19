@@ -1,0 +1,360 @@
+<section>
+
+  <h3>s11 y s12 (19 de diciembre)</h3>
+  <table class="dic19"></table>
+
+
+
+  <button onclick="dic19()">Click y ver consola</button>
+
+  <script>
+
+    let pokemons = [
+      { id: 1, name: "charmander", type: "fire", base_damage: 10, base_hp: 12, speed: 30 },
+      { id: 2, name: "squirtle", type: "water", base_damage: 9, base_hp: 14, speed: 26 },
+      { id: 3, name: "bulbasaur", type: "leaf", base_damage: 8, base_hp: 16, speed: 26 },
+      { id: 4, name: "pikachu", type: "electric", base_damage: 12, base_hp: 8, speed: 32 },
+      { id: 5, name: "pidgey", type: "air", base_damage: 10, base_hp: 10, speed: 35 },
+      { id: 6, name: "goldeen", type: "water", base_damage: 9, base_hp: 12, speed: 32 },
+      { id: 7, name: "bellsprout", type: "leaf", base_damage: 10, base_hp: 12, speed: 30 },
+      { id: 8, name: "magnemite", type: "electric", base_damage: 9, base_hp: 14, speed: 30 },
+      { id: 9, name: "ponyta", type: "fire", base_damage: 12, base_hp: 18, speed: 36 },
+      { id: 10, name: "evee", type: "normal", base_damage: 10, base_hp: 12, speed: 30 },
+    ]
+
+    function pokeOrdenarPorKey(key) {
+      console.log('1: ordenando pokemones por key (de menor a mayor):', key)
+
+      if (typeof pokemons[0][key] === "string") {
+        return pokemons.sort((a, b) => { return a[key].localeCompare(b[key]) })
+      } else if (typeof pokemons[0][key] === "number") {
+        return pokemons.sort((a, b) => { return a[key] - b[key] })
+      } else {
+        return "Por favor utiliza un key válido"
+      }
+    }
+
+    const table = document.querySelector(".dic19")
+
+
+    function dic19() {
+      console.log('1.1. y 1.2 tabla creada, puede ordenarse con click en headers')
+      console.log(` 2 y 3. Correr funcion 'askForIncompletePokemonInfo()'`)
+      console.log(` 4. Correr funcion 'revisarYCompletar()'`)
+      console.log(` 5. Correr funcion 'users19MenorAmayor()'`)
+      console.log(` 6. Correr funcion 'concatenacionConSentido()'`)
+      console.log(` 7. Correr funcion 'function ordenarUsers19PorParametro()'`)
+      console.log(` 8. Correr funcion 'btnBtnCrear()'`)
+      console.log(` 9. Correr funcion 'btnBtnMouseOver()'`)
+      console.log(`10. Correr funcion 'createUser()'`)
+      console.log(`11. Correr funcion 'crearUsuario()'`)
+
+
+    }
+
+    table.setAttribute('border', '1');
+    construirCabecera();
+    construirCuerpo();
+    function construirCabecera() {
+      const encabezados = document.createElement("thead")
+      for (const key in pokemons[0]) {
+        const th = document.createElement("th")
+        th.textContent = key
+        encabezados.append(th);
+
+        th.style.background = 'grey'
+          ;
+
+        th.addEventListener('click', () => {
+          pokeOrdenarPorKey(key);
+
+          table.innerHTML = ''; //desaparece la tabla y vuelve a construirse
+          construirCabecera();
+          construirCuerpo();
+        })
+      }
+      table.append(encabezados)
+    }
+
+
+    function construirCuerpo() {
+      for (const index in pokemons) {
+        const tr = document.createElement("tr")
+        for (const key in pokemons[index]) {
+          const td = document.createElement("td")
+          td.textContent = pokemons[index][key]
+          tr.append(td)
+        }
+        table.append(tr)
+      }
+    }
+
+    //1.1. De la tarea anterior: Utilizando javascript crear una tabla de pokemons con las siguientes columnas: id, name, type, base_damage, base_hp, speed
+    //1.2. Utilizando javascript modifica el codigo creado en el ejecicio anterior y agrega un evento que permita ordenar los pokemons haciendo click en sus encabezados.
+    //2. Dado el siguiente objeto, crear una funcion que verifique si todos los atributos se encuentran llenos.
+
+    let pokemonsInfoIncompleta = [
+      { id: 1, name: "charmander", type: "", base_damage: 10, base_hp: 12, speed: 30 },
+      { id: 2, name: "squirtle", type: "", base_damage: 9, base_hp: 14, speed: 26 }]
+
+
+    let keysCorrectas = Object.keys(pokemonsInfoIncompleta[0]);
+
+    function askForIncompletePokemonInfo() {
+      for (const indice in pokemonsInfoIncompleta) {
+        askAndAsk(pokemonsInfoIncompleta[indice])
+      }
+      console.log('info completa', pokemonsInfoIncompleta)
+    }
+
+    function askAndAsk(objeto) {
+      console.log(objeto)
+      for (const rasgo in objeto) {
+        while (objeto[rasgo] === '') {
+          objeto[rasgo] = prompt(`El dato ${rasgo.toUpperCase()} de ${objeto['name'].toUpperCase()} esta vacío, por favor esribir debajo`);
+
+          console.log(objeto);
+        }
+      }
+      return objeto;
+    }
+
+    function askAndAskV2(objeto) {
+      console.log(objeto)
+      for (const rasgo in objeto) {
+        while (objeto[rasgo] === '') {
+          objeto[rasgo] = prompt(`El dato ${rasgo.toUpperCase()} esta vacío, por favor esribir debajo`);
+
+          console.log(objeto);
+        }
+      }
+      return objeto;
+    }
+
+    // En caso no sea asi, que envie una alerta mostrando un mensaje y los atributos que estan vacíos.
+    // Ejemplo: {nombre: "", apellido: "Pacheco", edad: 38, profesion: ""} => Los campos nombre y profesion se encuentran vacios.
+
+    // let persona = { nombre: "", apellido: "Pacheco", edad: 38, profesion: ""}
+
+    //3. Para el ejercicio anterior, crear una funcion que dados los datos pendientes, lance un prompt para que el usuario
+    // complete los datos faltantes. Debe verificar que el dato ingresado no este vacio y que corresponda al tipo de dato.
+
+    //4. Te enviaron una base de datos de usuarios:
+
+    let users19 = [
+      { nombre: "", apellido: "Pacheco", edad: 38, profesion: "" },
+      { nombre: "Andrea", apellido: "", edad: 25, profesion: "profesor" },
+      { nombre: "Julia", apellido: "", edad: 32, profesion: "musico" },
+      { nombre: "", apellido: "Martinez", edad: 29, profesion: "programador" },
+      { nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "" },
+      { nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario" },
+    ]
+
+    // Te piden que utilizando las funciones de los ejercicios anteriores, evalues que usuarios tienen datos pendientes
+    // y en caso no existan, solicitar el ingreso de los datos a traves del prompt para completarlos.
+
+    function revisarYCompletar() {
+      doubleLoop(users19)
+      function doubleLoop(object) {
+        for (const persona in object) { //>const persona y const rasgo se imprimen como NUMEROS 0 1 2 3 4...
+
+          alert(`comenzar a verificar los datos de la persona ${+persona + 1}`) //cuando acepte empieza el loop para completar lo que falte //inicia en cero, por eso el + 1. y '+persona' para que 'persona' pase a ser numero
+
+          for (const rasgo in persona) {
+
+            //console.log(`los datos de la persona ${persona} están incompletos`);
+            // console.log(persona) //> 0 1 2 3 4 5
+            // console.log(rasgo) 0 0 0 0 0 0
+
+            askAndAskV2(object[persona]); //persona son numeros indices
+          }
+          alert(`datos de la persona ${+persona + 1} completos`)
+        }
+        alert('todos los datos completos, gracias');
+        return object;
+      }
+
+    }
+
+    //5. Crear una funcion que permita ordenar los usuarios por edad de menor a mayor.
+
+    // let users = [
+    // {nombre: "Andres", apellido: "Pacheco", edad: 38, profesion: "developer"},
+    // {nombre: "Andrea", apellido: "Sanchez", edad: 25, profesion: "profesor"},
+    // {nombre: "Julia", apellido: "Ochoa", edad: 32, profesion: "musico"},
+    // {nombre: "Samuel", apellido: "Martinez", edad: 29, profesion: "programador"},
+    // {nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "chef"},
+    // {nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario"},
+    // 
+
+    function users19MenorAmayor() {
+      let enOrdenDeEdad = users19.sort((a, b) => {
+        return (a.edad - b.edad)
+      })
+      console.log('usuarios ordenados de menor a mayor edad:')
+      console.log(enOrdenDeEdad);
+    }
+    //6. Crear una funcion que nos permita escribir los datos de cada usuario en el navegador linea por linea de la siguiente manera:
+    // 1. Recorrer el arreglo users
+    // 2. Obtener los valores de cada llave
+    // 3. Formar la frase nombre apellido tiene edad años y es profesion
+    // 4. Escribir esta frase en el navegador linea por linea
+    // Ejemplo: "Andres Soto tiene 28 años y es profesor"
+
+    let sunombre19, suApellido19, suEdad19, suProfesion19;
+    let concatenacion;
+
+    function concatenacionConSentido() {
+      for (indice in users19) {
+        suNombre19 = users19[indice].nombre ? users19[indice].nombre : '[falta nombre]';
+        suApellido19 = users19[indice].apellido ? users19[indice].apellido : '[falta apellido]';
+        suEdad19 = users19[indice].edad ? users19[indice].edad : '[falta edad]';
+        suProfesion19 = users19[indice].profesion ? users19[indice].profesion : '[falta profesión]';
+
+        concatenacion = `${suNombre19} ${suApellido19} tiene ${suEdad19} años de edad y su profesión es ${suProfesion19}.`
+
+        console.log(concatenacion);
+      }
+    }
+
+
+
+    //7. Crear una funcion que nos permita ingresar el parametro por el cual se va a ordenar la lista de usuarios y retorne la lista
+    // ordenada.
+
+    function ordenarUsers19PorParametro() {
+      parametro = prompt('por cuál parametro quieres ordenar el arreglo users19?')
+      if (typeof users19[0][parametro] === "string") {
+        return users19.sort((a, b) => { return a[parametro].localeCompare(b[parametro]) })
+      } else if (typeof users19[0][parametro] === "number") {
+        return users19.sort((a, b) => { return a[parametro] - b[parametro] })
+      } else {
+        return "Por favor utiliza un parametro válido"
+      }
+    }
+
+
+
+
+
+
+    //8. Crear un boton con javascript que diga "Aceptar" y cuando se le de click mande una alerta que diga: "De acuerdo!"
+
+    let btnBtn
+    function btnBtnCrear() {
+
+      btnBtn = document.createElement('button');
+      btnBtn.textContent = 'Aceptar'
+      btnBtn.style.position = 'fixed';
+      btnBtn.style.top = '40vh';
+      btnBtn.style.left = '40vw'
+
+      document.documentElement.append(btnBtn)
+      btnBtn.addEventListener('click', () => {
+        alert('De Acuerdo!')
+      })
+    }
+
+    //9. Agrega un listener al boton para que cuando el usuario haga hover sobre este, el boton desaparezca.
+
+    function btnBtnMouseOver() {
+      btnBtn.addEventListener('mouseover', () => {
+        btnBtn.style.opacity = '.1'
+      })
+      btnBtn.addEventListener('mouseout', () => {
+        btnBtn.style.opacity = '1'
+      })
+    }
+
+    //10. Crear una funcion que te permita ingresar en un prompt la informacion de un usuario de la siguiente manera:
+    // "Ingrese la informacion del usuario (nombre, apellido, edad, profesion)"
+    // El usuario digitara: Andres, Perez, 28, ingeniero.
+    // La informacion debe ser guardada como objeto dentro del array users asignadole un id unico a cada registro.
+
+
+    let users = [];
+    let userKeys = ['id', 'nombre', 'apellido', 'edad', 'profesion']
+
+    let userInfo;
+    let userInfoArray;
+    let counter = 0;
+
+    // createUser();
+    // Andres, Perez, 28, ingeniero
+
+    function createUser() {
+      const userObjeto = {};
+      counter++;
+
+      userInfo = prompt('Ingrese la informacion del usuario en el formato: nombre, apellido, edad, profesion (separando con comas)');
+      userInfoArray = userInfo.split(', ');
+      userInfoArray.unshift(counter);
+
+      userInfoArray.forEach((item, indice) => {
+        userObjeto[userKeys[indice]] = userInfoArray[indice];
+        // es lo mismo que
+        //userObjeto[0] = usuarioInfoArray[0]; 
+        //userObjeto[1] = usuarioInfoArray[1]; ....
+
+      })
+      console.log(userObjeto)
+      // https://bobbyhadz.com/blog/javascript-convert-array-to-object
+
+      users.push(userObjeto);
+    }
+
+
+    //11. Utilizando el objeto Date, añadir la propiedad created_date de manera interna en donde se registre el
+    // momento en que ese registro fue creado.
+
+    let usuarios = [];
+
+    let usuarioKeys = ['id', 'nombre', 'apellido', 'edad', 'profesion', 'created_at', 'modified_at']
+    let idCounter = 0;
+
+
+
+    function crearUsuario() {
+      idCounter++;
+      const usuario = {}; //IMPORTANTE QUE SEA CONST
+      const created_at = new Date().toUTCString();
+      usuarioInfo = prompt('Ingrese la informacion del usuario en el formato: nombre, apellido, edad, profesion (separando con comas)');
+      usuarioInfoArray = usuarioInfo.split(', ');
+
+      usuarioInfoArray.unshift(idCounter);
+      usuarioInfoArray.push(created_at)
+
+      console.log(usuarioInfoArray)
+
+      usuarioInfoArray.forEach((item, indice) => {
+        usuario[usuarioKeys[indice]] = usuarioInfoArray[indice];
+      })
+      console.log(usuario);
+
+      usuarios.push(usuario);
+
+      console.log(usuarios)
+    }
+
+      //12.
+
+      // let users = [
+      // {id: 1, nombre: "Andres", apellido: "Pacheco", edad: 38, profesion: "developer", created_at: "2022-09-26T06:25:21.118Z"},
+      // {id: 2, nombre: "Andrea", apellido: "Sanchez", edad: 25, profesion: "profesor", created_at: "2022-04-18T14:14:32.879Z"},
+      // {id: 3, nombre: "Julia", apellido: "Ochoa", edad: 32, profesion: "musico", created_at: "2021-12-14T11:53:38.279Z"},
+      // {id: 4, nombre: "Samuel", apellido: "Martinez", edad: 29, profesion: "programador", created_at: "2022-01-26T03:31:15.202Z"},
+      // {id: 5, nombre: "Roberto", apellido: "Mattos", edad: 40, profesion: "chef", created_at: "2022-07-27T02:06:22.760Z"},
+      // {id: 6, nombre: "Mercedes", apellido: "Sanchez", edad: 35, profesion: "veterinario", created_at: "2022-05-01T22:06:35.864Z"},
+      // ]
+
+      // Crear una funcion que permita ordenar la lista de usuarios por fecha de creacion, de la mas nueva a la mas antigua y viceversa
+      // utilizando el parametro booleano reverse (si es true se ordenaran de nuevo a antiguo)
+
+      //13. Crear una funcion que permita filtrar los usuarios por mes y año de creacion.
+
+
+
+
+
+  </script>
+</section>
