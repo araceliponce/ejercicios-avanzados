@@ -68,9 +68,9 @@
 
     //es la misma funcion y ordena tanto strings como numeros
 
-    let resultado1 = poke_ordenarPorKey('base_damage')
-    console.log(resultado1)
-    function poke_ordenarPorKey(key) {
+    let pokeResultado1 = pokeOrdenarPorKey('base_damage')
+    console.log(pokeResultado1)
+    function pokeOrdenarPorKey(key) {
       console.log('1: ordenando pokemones por key (de menor a mayor):', key)
 
       if (typeof pokemons[0][key] === "string") {
@@ -86,12 +86,12 @@
 
     //2. Crear una funcion para ordenar los pokemons dependiendo de el argumento que se ingrese en la funcion. Pueden ingresar: type, base_damage, base_hp o speed.
 
-    let resultado2 = [];
-    resultado2 = poke_filterPokemonsBy('speed', 30)
+    let pokeResultado2 = [];
+    pokeResultado2 = pokeFilterPokemonsBy('speed', 30)
 
-    console.log(resultado2);
+    console.log(pokeResultado2);
 
-    function poke_filterBetterPokemons(key, value) {
+    function pokeFilterBetterPokemons(key, value) {
       console.log('2: filtrando pokemones dependiendo de speed mayor o igual a 30: ', key, value);
       const validKeys = Object.keys(pokemons[0]);
       if (validKeys.includes(key)) {
@@ -103,12 +103,12 @@
 
     //3. Crear una funcion que filtre el objeto pokemons y devuelva un arreglo con los pokemons filtrados. La funcion debe aceptar un argumento para filtrar por type de pokemon.
 
-    let resultado3 = [];
-    resultado2 = poke_filterPokemonsBy('type', 'water')
-    let resultado3Alterno = pokemons.filter(pokemons => pokemons['type'] === 'water');
-    console.log(resultado3Alterno);
+    let pokeResultado3 = [];
+    pokeResultado2 = pokeFilterPokemonsBy('type', 'water')
+    let pokeResultado3Alterno = pokemons.filter(pokemons => pokemons['type'] === 'water');
+    console.log(pokeResultado3Alterno);
 
-    function poke_filterPokemonsBy(key, value) {
+    function pokeFilterPokemonsBy(key, value) {
       console.log('2: filtrando pokemones dependiendo de 2 parametros, key y value: ', key, value);
       const validKeys = Object.keys(pokemons[0]);
       if (validKeys.includes(key)) {
