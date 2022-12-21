@@ -9,7 +9,7 @@
 
   <script>
 
-    let pokemons = [
+    let pokemons19 = [
       { id: 1, name: "charmander", type: "fire", base_damage: 10, base_hp: 12, speed: 30 },
       { id: 2, name: "squirtle", type: "water", base_damage: 9, base_hp: 14, speed: 26 },
       { id: 3, name: "bulbasaur", type: "leaf", base_damage: 8, base_hp: 16, speed: 26 },
@@ -25,10 +25,10 @@
     function pokeOrdenarPorKey(key) {
       console.log('1: ordenando pokemones por key (de menor a mayor):', key)
 
-      if (typeof pokemons[0][key] === "string") {
-        return pokemons.sort((a, b) => { return a[key].localeCompare(b[key]) })
-      } else if (typeof pokemons[0][key] === "number") {
-        return pokemons.sort((a, b) => { return a[key] - b[key] })
+      if (typeof pokemons19[0][key] === "string") {
+        return pokemons19.sort((a, b) => { return a[key].localeCompare(b[key]) })
+      } else if (typeof pokemons19[0][key] === "number") {
+        return pokemons19.sort((a, b) => { return a[key] - b[key] })
       } else {
         return "Por favor utiliza un key válido"
       }
@@ -57,7 +57,7 @@
     construirCuerpo();
     function construirCabecera() {
       const encabezados = document.createElement("thead")
-      for (const key in pokemons[0]) {
+      for (const key in pokemons19[0]) {
         const th = document.createElement("th")
         th.textContent = key
         encabezados.append(th);
@@ -78,11 +78,11 @@
 
 
     function construirCuerpo() {
-      for (const index in pokemons) {
+      for (const index in pokemons19) {
         const tr = document.createElement("tr")
-        for (const key in pokemons[index]) {
+        for (const key in pokemons19[index]) {
           const td = document.createElement("td")
-          td.textContent = pokemons[index][key]
+          td.textContent = pokemons19[index][key]
           tr.append(td)
         }
         table.append(tr)
