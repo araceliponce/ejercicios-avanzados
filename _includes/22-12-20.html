@@ -1,4 +1,6 @@
-<section>
+<section id="s13ys14" aria-labelledby="s13ys14Title">
+
+  <h3 id="titleS13yS14">Tareas asíncronas usando AngularJS (20 de diciembre)</h3>
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
@@ -88,9 +90,12 @@
 
             $scope.tarifaAPartirDeB = $scope.tarifaFija + $scope.tarifaAPartirDeA + (user.distancia - 1000) * 20;
 
+            let tarifaPorCobrar = 0;
+
             $scope.descuento = tarifaPorCobrar * 0.1;
 
             $scope.tarifaPorCobrar = '';
+
 
 
             //FUNCION
@@ -104,7 +109,7 @@
               tarifaPorCobrar = $scope.tarifaAPartirDeA
             } else if (user.distancia > 1000) {
               console.log('distancia mayor a 1000 km');
-              tarifaPorCobrar = user.tarifaAPartirDeB
+              tarifaPorCobrar = $scope.tarifaAPartirDeB
             }
 
 
@@ -114,7 +119,6 @@
             else {
               user.descuento = 0;
             }
-
 
             console.log(`distancia en kms: ${user.distancia}. tarifa por cobrar ${tarifaPorCobrar}. descuento: ${user.descuento}`);
 
@@ -129,9 +133,7 @@
     <li>
       <p>s14</p>
       <p>Se lee por teclado el código del empleado, número de horas trabajadas, tarifa por hora. Calcular el salario básico, considerando la siguiente tabla de descuento.</p>
-
       <pre>
-
         Sueldo bruto	Descuento (%)
         Menor 500	0
         Entre 501 y 1000	2%
@@ -140,45 +142,97 @@
         Entre 8001 y 10000	21%
         Mayor 10000	30%
       </pre>
-
       <p>
-
         Crear una aplicación web que permita calcular el básico, descuento y salario neto
       </p>
 
+      <div ng-app="secondApp" ng-controller="secondCtrl">
+        <form>
+          <label>¿cuál es su código? (opcional)<input type="text" ng-model="persona.code"></label>
+          <label>¿cuántas horas trabajó?<input type="number" ng-model="persona.workedHours" required></label>
+          <label>¿de cuánto es su pago por hora?<input type="number" ng-model="persona.payPerHour" required></label>
 
-      <script>
-
-
-
-        let sueldosYDescuentos = {
-          jefe: 5000,
-          analista: 4000,
-          programador: 3000,
-          soporte: 2000,
-          asistente: 1500,
-        }
-      </script>
-
-      <div ng-app="secondApp" ng-controller="secondCtrl"></div>
-      <form>
-        <label>¿cuál es su código?<input type="text" ng-model="persona.code"></label>
-        <label>¿cuántas horas trabajó?<input type="number" ng-model="persona.workedHours"></label>
-        <label>¿de cuánto es su pago por hora?<input type="number" ng-model="persona.payPerHour"></label>
-        <button ng-click="second(persona)">Obtener sueldo bruto, descuento y salario final</button>
-      </form>
+          <button ng-click="getPay(persona)" type="button">Obtener sueldo bruto, descuento y salario final en consola</button> <!-- type=button para sobreescribir el default type=submit (que envia el from en Enter) -->
+        </form>
       </div>
 
       <script>
         let secondApp = angular.module('secondApp', []);
-        secondApp.controller('secondCtrl', function ($scope) {
+        secondApp.controller('secondCtrl', function ($scope2) {
 
-          $scope.label = 'Ingresar distancia recorrida:';
+          $scope2.personaData = '';
+          $scope2.code = '';
+          $scope2.workedHours = 0;
+          $scope2.payPerHour = 0;
 
-          $scope.getBill = function (persona) {
-            $scope.personaData = angular.copy(persona);
+          $scope2.getPay = function (persona) {
+            console.log($scope2.workedHours, $scope2.payPerHour);
 
-            console.log('distancia en input:', $scope.userData.distancia, user.distancia);
+            persona.workedHours = $scope2.workedHours;
+            console.log(persona.workedHours)
+
+            $scope2.personaData = angular.copy(persona);
+
+            alert('ABCDEF', persona, $scope2.persona);
+
+          }
+
+          let sueldoBruto20 = workedHours
+        })
+
+        /* EL FORM SE ENVIABA AUNQUE AÑADI EL TYPE=BUTTON 
+        ,ASI QUE USE JS */
+
+
+        const btnGetPay = document.querySelector('button[ng-click="getPay(persona)"')
+        const pCodeInput = document.querySelector('[ng-model="persona.code"]');
+        const pWorkedHoursInput = document.querySelector('[ng-model="persona.workedHours"]');
+        const pPayPerHourInput = document.querySelector('[ng-model="persona.payPerHour"]');
+
+        let pSueldoBruto;
+        let pDescuento;
+        let pSueldoFinal;
+
+        btnGetPay.addEventListener('click', (e) => {
+          // e.preventDefault();
+
+          pCode = pCodeInput.value ? pCodeInput.value : '00000'
+          pWorkedHours = pWorkedHoursInput.value;
+          pPayPerHour = pPayPerHourInput.value;
+
+          pSueldoBruto = pWorkedHours * pPayPerHour;
+
+          if (pSueldoBruto < 500) {
+            console.log('descuento aplicado: 0%');
+            pDescuento = 0;
+
+          } else if (pSueldoBruto < 1000) {
+            console.log('descuento aplicado: 2%');
+            pDescuento = pSueldoBruto * 0.02;
+
+          } else if (pSueldoBruto < 4000) {
+            console.log('descuento aplicado: 8%');
+            pDescuento = pSueldoBruto * 0.08;
+
+          } else if (pSueldoBruto < 8000) {
+            console.log('descuento aplicado: 15%');
+            pDescuento = pSueldoBruto * 0.15;
+
+          } else if (pSueldoBruto < 10000) {
+            console.log('descuento aplicado: 21%');
+            pDescuento = pSueldoBruto * 0.21;
+
+          } else {
+            console.log('descuento aplicado: 30%');
+            pDescuento = pSueldoBruto * 0.30;
+          }
+
+          pSueldoFinal = pSueldoBruto - pDescuento;
+
+          console.log({ pSueldoBruto }, { pDescuento }, { pSueldoFinal })
+
+          console.log(`La persona trabajadora de código '${pCode}', por sus ${pWorkedHours} horas trabajadas a un pago de ${pPayPerHour} soles por hora, obtendría un sueldo inicial o bruto de ${pSueldoBruto} soles, al cual se le aplica un descuento de ${pDescuento} soles, obteniendo un sueldo final de ${pSueldoFinal} soles`)
+        }) 
       </script>
     </li>
   </ol>
