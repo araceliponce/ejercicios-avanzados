@@ -1,3 +1,6 @@
+//node ejercicio1.js para ver console.log en terminal
+
+
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 const http = require('http');
 

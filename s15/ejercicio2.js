@@ -3,7 +3,7 @@
 
 
 
-//node index.js para ver cslogs en terminal
+//node ejercicio2.js para ver console.log en terminal
 
 const express = require('express')
 const app = express()
