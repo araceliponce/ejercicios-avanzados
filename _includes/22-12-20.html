@@ -219,7 +219,9 @@
             pDescuento = pSueldoBruto * 0.30;
           }
 
-          pSueldoFinal = pSueldoBruto - pDescuento.toFixed(2);
+          pDescuento = pDescuento.toFixed(2);
+
+          pSueldoFinal = pSueldoBruto - pDescuento;
 
           console.log({ pSueldoBruto }, { pDescuento }, { pSueldoFinal })
 
