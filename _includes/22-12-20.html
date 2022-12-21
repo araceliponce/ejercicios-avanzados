@@ -1,0 +1,185 @@
+<section>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <!-- angularjs es como angular, pero usando javascript -->
+
+  <!-- <div ng-app="">
+    <p>Nombre: <input type="text" ng-model="nombre"> </p>
+    <p ng-bind="nombre"></p>
+    <p>hola {{nombre}}</p>
+  </div> -->
+
+  <!-- el $scope es el Modulo del modelovistacontrolador -->
+
+
+  <!--   <div ng-app="oneApp" ng-controller="oneCtrl">
+    <p>agregamos ng app y ng controller</p>
+    <em>{{firstName + ' '+ lastName}}</em>
+  </div>
+  <script>
+    let app = angular.module('oneApp', []); //ahora podemos agregar controlladores  [] [] [[[[]]]]
+
+    app.controller('myCtrl', function ($scope) {
+      $scope.firstName = 'oooo'
+      $scope.lastName = ''
+    })
+  </script>
+
+  <script>
+    let aaa = { nombre: 'aaa', oo: 'ee' }
+    let bbb = aaa;
+
+    console.log(aaa, bbb)
+  </script> -->
+
+
+
+
+
+</section>
+
+<section>
+
+  <ol>
+    <li>
+      <p>s13</p>
+      <p>La empresa “MULTIPLAN” dedicada al alquiler de vehículos, emite una factura de acuerdo al servicio prestado a sus clientes por la distancia recorrida en el auto alquilado. </p>
+      <ul>
+
+
+        <li>Si la distancia recorrida no es mayor a los 300 km., se cobra una tarifa fija de S/.250, </li>
+
+        <li>si la distancia recorrida es mayor a 300 km. y hasta 1000 km. se cobra la tarifa fija más el exceso de kilómetros a razón de S/. 30 por km. </li>
+
+        <li>y si la distancia recorrida es mayor a 1000 km., la compañía cobra la tarifa fija más los kilómetros recorridos entre 300 hasta 1000 a razón de S/. 30, más S/.20 por Kilómetro de exceso en distancias mayores de 1000 km.</li>
+
+      </ul>
+      <p> Además, por promoción otorga un descuento del 10% del importe a pagar, por importes mayores a 500 soles.
+      </p>
+
+      <div ng-app="oneApp" ng-controller="oneCtrl">
+        <form>
+          <label>Nombre, DNI o RUC<input type="text" ng-model="user.id"> </label>
+          <label>{{label}} <input type="text" ng-model="user.distancia"></label>
+          <button ng-click="getBill(user)">Obtener factura</button>
+        </form>
+        <em ng-model="response">El precio cobrado a {{user.id}} por los {{user.distancia}} km recorridos es igual a {{tarifaPorCobrar}} soles (ver consola)</em>
+
+      </div>
+
+      <script>
+        let oneApp = angular.module('oneApp', []);
+        oneApp.controller('oneCtrl', function ($scope) {
+
+          $scope.label = 'Ingresar distancia recorrida:';
+          $scope.distancia = '';
+          $scope.userData = '';
+          $scope.getBill = function (user) {
+            $scope.userData = angular.copy(user);
+
+            console.log('distancia en input:', $scope.userData.distancia, user.distancia);
+
+            // $scope.distanciaRecorrida = user.distancia;
+
+            $scope.tarifaFija = 250;
+
+            $scope.tarifaAPartirDeA = $scope.tarifaFija + (user.distancia - 300) * 30;
+
+            $scope.tarifaAPartirDeB = $scope.tarifaFija + $scope.tarifaAPartirDeA + (user.distancia - 1000) * 20;
+
+            $scope.descuento = tarifaPorCobrar * 0.1;
+
+            $scope.tarifaPorCobrar = '';
+
+
+            //FUNCION
+            if (user.distancia <= 300) {
+              console.log('distancia menor o igual a 300km');
+              tarifaPorCobrar = $scope.tarifaFija;
+            } else if (user.distancia <= 1000) {
+              console.log('distancia entre 300 a 1000km');
+              console.log($scope.tarifaFija, $scope.tarifaAPartirDeA)
+
+              tarifaPorCobrar = $scope.tarifaAPartirDeA
+            } else if (user.distancia > 1000) {
+              console.log('distancia mayor a 1000 km');
+              tarifaPorCobrar = user.tarifaAPartirDeB
+            }
+
+
+            if (tarifaPorCobrar > 500) {
+              tarifaPorCobrar - user.descuento;
+            }
+            else {
+              user.descuento = 0;
+            }
+
+
+            console.log(`distancia en kms: ${user.distancia}. tarifa por cobrar ${tarifaPorCobrar}. descuento: ${user.descuento}`);
+
+            $scope.tarifaPorCobrar = tarifaPorCobrar;
+
+            return tarifaPorCobrar;
+          }
+        })
+      </script>
+    </li>
+
+    <li>
+      <p>s14</p>
+      <p>Se lee por teclado el código del empleado, número de horas trabajadas, tarifa por hora. Calcular el salario básico, considerando la siguiente tabla de descuento.</p>
+
+      <pre>
+
+        Sueldo bruto	Descuento (%)
+        Menor 500	0
+        Entre 501 y 1000	2%
+        Entre 1001 y 4000	8%
+        Entre 4001 y 8000	15%
+        Entre 8001 y 10000	21%
+        Mayor 10000	30%
+      </pre>
+
+      <p>
+
+        Crear una aplicación web que permita calcular el básico, descuento y salario neto
+      </p>
+
+
+      <script>
+
+
+
+        let sueldosYDescuentos = {
+          jefe: 5000,
+          analista: 4000,
+          programador: 3000,
+          soporte: 2000,
+          asistente: 1500,
+        }
+      </script>
+
+      <div ng-app="secondApp" ng-controller="secondCtrl"></div>
+      <form>
+        <label>¿cuál es su código?<input type="text" ng-model="persona.code"></label>
+        <label>¿cuántas horas trabajó?<input type="number" ng-model="persona.workedHours"></label>
+        <label>¿de cuánto es su pago por hora?<input type="number" ng-model="persona.payPerHour"></label>
+        <button ng-click="second(persona)">Obtener sueldo bruto, descuento y salario final</button>
+      </form>
+      </div>
+
+      <script>
+        let secondApp = angular.module('secondApp', []);
+        secondApp.controller('secondCtrl', function ($scope) {
+
+          $scope.label = 'Ingresar distancia recorrida:';
+
+          $scope.getBill = function (persona) {
+            $scope.personaData = angular.copy(persona);
+
+            console.log('distancia en input:', $scope.userData.distancia, user.distancia);
+      </script>
+    </li>
+  </ol>
+</section>
