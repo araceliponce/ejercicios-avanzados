@@ -110,7 +110,7 @@
       }
       return objeto;
     }
-    let users = [
+    let users24 = [
       { nombre: "", apellido: "Pacheco", edad: 38, profesion: "" },
       { nombre: "Andrea", apellido: "", edad: 25, profesion: "profesor" },
       { nombre: "Julia", apellido: "", edad: 32, profesion: "musico" },
@@ -121,7 +121,7 @@
 
     let btnCompletarDeTodos = document.querySelector('#btnCompletarDeTodos');
     btnCompletarDeTodos.addEventListener('click', () => {
-      doubleLoop(users)
+      doubleLoop(users24)
       function doubleLoop(object) {
         for (const persona in object) { //>const persona y const rasgo se imprimen como NUMEROS 0 1 2 3 4...
 
@@ -146,7 +146,7 @@
     let btnOrdenar = document.getElementById('btnOrdenar');
 
     btnOrdenar.addEventListener('click', () => {
-      sortbyAge(users);
+      sortbyAge(users24);
       function sortbyAge(objeto) { //de menor a mayor
         let enOrdenDeEdad = objeto.sort((a, b) => {
           return (a.edad - b.edad)
