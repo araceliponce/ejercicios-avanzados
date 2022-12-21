@@ -219,7 +219,7 @@
             pDescuento = pSueldoBruto * 0.30;
           }
 
-          pDescuento = pDescuento.toFixed(2);
+          pDescuento = +pDescuento.toFixed(2);
 
           pSueldoFinal = pSueldoBruto - pDescuento;
 
